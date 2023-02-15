@@ -9,3 +9,8 @@
 .logo_area_header {
     grid-area: headerLogo;
 }
+
+.logo_area_auth {
+    margin: 70px 0 0 0;
+    padding: 0;
+}

@@ -1,9 +1,7 @@
 import './Logo.css';
 function Logo(props) {
   return (
-    <div className={`logo logo_area_${props.area}`}>
-
-    </div>
+    <div className={`logo logo_area_${props.area}`}></div>
   )
 }
 
