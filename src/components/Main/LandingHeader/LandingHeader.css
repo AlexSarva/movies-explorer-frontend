@@ -20,7 +20,9 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 32px;
+    text-decoration: none;
+    text-align: center;
 }
 
 .landing-header__login {
@@ -28,11 +30,13 @@
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 32px;
     width: 76px;
     height: 32px;
     color: #000;
     background: #3DDC84;
     border: none;
     border-radius: 3px;
+    text-decoration: none;
+    text-align: center;
 }

@@ -6,11 +6,17 @@
     box-sizing: border-box;
 }
 
-.logo_area_header {
+.logo_area_landing-header {
     grid-area: headerLogo;
 }
 
 .logo_area_auth {
     margin: 70px 0 0 0;
+    padding: 0;
+}
+
+.logo_area_header {
+    margin: 0;
+
     padding: 0;
 }
