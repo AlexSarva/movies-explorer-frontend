@@ -1,0 +1,139 @@
+.student {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.student__info {
+    width: 100%;
+    margin: 66px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 270px;
+    grid-template-rows: repeat(2, 60px) 190px 20px;
+    grid-template-areas:
+    "name avatar"
+    "experience avatar"
+    "description avatar"
+    "github avatar";
+    justify-content: space-between;
+}
+
+.student__name {
+    grid-area: name;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+}
+
+.student__experience {
+    grid-area: experience;
+    margin: 0;
+    padding: 18px 0 0 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    mix-blend-mode: normal;
+}
+
+.student__description {
+    width: 600px;
+    grid-area: description;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+}
+
+.student__github {
+    grid-area: github;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.student__avatar {
+    width: 100%;
+}
+
+.student__portfolio {
+    width: 100%;
+    margin: 100px 0 0 0;
+    padding: 0;
+}
+
+.student__portfolio-title {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+    mix-blend-mode: normal;
+}
+
+.student__portfolio-sites {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.student__portfolio-site {
+    width: 100%;
+    height: 89px;
+    margin: 0 0 0 0;
+    padding: 0;
+    border-top: 1px solid #424242;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student__portfolio-site:first-child {
+    margin: 26px 0 0 0;
+    border: none;
+}
+
+.student__portfolio-type {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+}
+
+.student__portfolio-link {
+    width: 18px;
+    height: 18px;
+    margin: 5px 5px 0 0;
+    padding: 0;
+    background-image: url(../../images/siteLink.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+
+}

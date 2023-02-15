@@ -1,0 +1,38 @@
+.header {
+    width: calc(100% - 140px);
+    height: 74px;
+    padding: 0 70px 0 70px;
+    background: #073042;
+    display: grid;
+    grid-template-columns: 38px 1fr 90px 76px;
+    grid-template-areas: "headerLogo . register login";
+    align-items: center;
+    gap: 30px;
+}
+
+.header__register {
+    grid-area: register;
+    width: 100px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.header__login {
+    grid-area: login;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    width: 76px;
+    height: 32px;
+    color: #000;
+    background: #3DDC84;
+    border: none;
+    border-radius: 3px;
+}
