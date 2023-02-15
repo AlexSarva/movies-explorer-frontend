@@ -1,4 +1,4 @@
-.header {
+.landing-header {
     width: calc(100% - 140px);
     height: 74px;
     padding: 0 70px 0 70px;
@@ -10,7 +10,7 @@
     gap: 30px;
 }
 
-.header__register {
+.landing-header__register {
     grid-area: register;
     width: 100px;
     height: 32px;
@@ -23,7 +23,7 @@
     line-height: 16px;
 }
 
-.header__login {
+.landing-header__login {
     grid-area: login;
     font-style: normal;
     font-weight: 500;

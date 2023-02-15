@@ -1,8 +1,8 @@
-import './Technology.css';
-import {Technologies} from "../../utils/constants";
-import TechnologyElement from "./TechnologyElement/TechnologyElement";
+import './Techs.css';
+import {Technologies} from "../../../utils/constants";
+import TechsElement from "./TechsElement/TechsElement";
 
-function Technology() {
+function Techs() {
   return (
     <div className="technology">
       <h3 className="technology__title">7&#160;технологий</h3>
@@ -10,11 +10,11 @@ function Technology() {
         которые применили в&#160;дипломном проекте.</p>
       <ul className="technology__elements">
         {Technologies.map((technology, n) => (
-          <TechnologyElement key={n} name={technology} />
+          <TechsElement key={n} name={technology} />
         ))}
       </ul>
     </div>
   )
 }
 
-export default Technology;
+export default Techs;

@@ -1,4 +1,4 @@
-function TechnologyElement(props) {
+function TechsElement(props) {
   return (
     <li className="technology__element">
       <p className="technology__element-text">{props.name}</p>
@@ -6,4 +6,4 @@ function TechnologyElement(props) {
   )
 }
 
-export default TechnologyElement;
+export default TechsElement;
