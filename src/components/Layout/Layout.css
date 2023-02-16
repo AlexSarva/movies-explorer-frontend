@@ -1,11 +1,8 @@
 .layout-content {
     width: calc(100% - 140px);
-    height: 300px;
     padding: 0 70px 0 70px;
-    /*background: #202020;*/
-    background: red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }

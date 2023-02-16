@@ -1,0 +1,12 @@
+.movies {
+    width: 100%;
+    margin: 0;
+    padding: 30px 70px 20px 70px;
+    background: #202020;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-auto-flow: row dense;
+    row-gap: 38px;
+    column-gap: 20px;
+    list-style: none;
+}
