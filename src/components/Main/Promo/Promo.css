@@ -42,16 +42,22 @@
     grid-area: button;
     width: 129px;
     height: 36px;
-    /*opacity: 0.6;*/
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 3px;
     color: #fff;
     background: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.promo__button-text {
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
-    align-self: flex-end;
 }
 
 .promo__image {

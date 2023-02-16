@@ -27,36 +27,23 @@
     align-items: center;
 }
 
+.header__nav-element:first-child {
+    margin: 0 18px 0 0;
+}
+
 .header__nav-link {
     margin: 0;
-    padding: 0;
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 18px;
-}
-
-.header__nav-link_type_main {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 18px;
-}
-
-.header__nav-sublink {
-    margin: 0 0 0 16px;
     padding: 0;
     text-decoration: none;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
     line-height: 18px;
-    /*display: none;*/
+    color: #fff;
 }
 
-.header__nav-sublink_active {
-    display: block;
+.header__nav-link_active {
+    font-weight: 500;
 }
 
 .header__account {

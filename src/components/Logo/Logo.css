@@ -6,11 +6,6 @@
     box-sizing: border-box;
 }
 
-.logo:hover {
-    cursor: pointer;
-    opacity: 0.6;
-}
-
 .logo_area_landing-header {
     grid-area: headerLogo;
 }

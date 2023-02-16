@@ -1,13 +1,18 @@
 import './Student.css';
 import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
+import Section from "../Section/Section";
 
 function Student() {
   return (
-    <div className="student">
-      <AboutMe />
-      <Portfolio />
-    </div>
+    <Section title="Студент" theme="black" sectionID="student"
+             children={
+               <div className="student">
+                 <AboutMe />
+                 <Portfolio />
+               </div>
+             }>
+    </Section>
   )
 }
 

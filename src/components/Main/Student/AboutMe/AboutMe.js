@@ -1,4 +1,5 @@
 import Avatar from "../../../../images/avatar.jpeg";
+import '../../../../styles/link/link.css';
 import {Link} from "react-router-dom";
 
 function AboutMe() {
@@ -13,7 +14,9 @@ function AboutMe() {
         как прошёл курс по&#160;веб-разработке, начал заниматься фриланс-заказами и&#160;ушёл
         с&#160;постоянной работы.</p>
       <img className="student__avatar" src={Avatar} alt="avatar"/>
-      <Link to="https://github.com/AlexSarva" className="student__github">Github</Link>
+      <Link to="https://github.com/AlexSarva"
+            className="student__github link" target="_blank"
+            rel="noopener noreferrer">Github</Link>
     </article>
   )
 }

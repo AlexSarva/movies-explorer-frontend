@@ -1,4 +1,5 @@
 import './MovieCard.css';
+import '../../styles/fade/fade.css';
 import {useState} from "react";
 
 function MovieCard(props) {
@@ -12,7 +13,7 @@ function MovieCard(props) {
   }
 
   return (
-    <article className="movie-card">
+    <article className="movie-card fade fade_type_in">
       <img className="movie-card__image" src={img} alt={title} />
       <div className="movie-card__description">
         <h3 className="movie-card__title">{title}</h3>

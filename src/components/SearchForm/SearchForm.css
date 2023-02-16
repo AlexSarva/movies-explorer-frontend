@@ -50,7 +50,7 @@
     align-items: center;
     gap: 12px;
     border-bottom: 1px solid #424242;
-    padding: 0 0 40px 0
+    padding: 0 0 40px 0;
 }
 
 .search__switch {
@@ -59,8 +59,20 @@
     justify-content: center;
     width: 34px;
     height: 14px;
-    background: #3DDC84;
+    background: #2F2F2F;
+    outline: 1px solid #7e7e7e;
     border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.search__switch_active {
+    background: #3DDC84;
+    outline: none;
+}
+
+.search__switch:hover {
+    opacity: 0.75;
+    cursor: pointer;
 }
 
 .search__checkbox {
@@ -105,6 +117,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.search__button:hover {
+    opacity: 0.65;
+    cursor: pointer;
 }
 
 .search__icon {

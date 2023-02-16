@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import '../../../../styles/link/link.css';
 function PortfolioSite(props) {
   const {link, title} = props.siteInfo;
 
   return (
-    <div className="student__portfolio-site">
+    <Link to={link} className="student__portfolio-site link"
+          target="_blank" rel="noopener noreferrer">
       <p className="student__portfolio-type">{title}</p>
-      <Link to={link} className="student__portfolio-link"></Link>
-    </div>
+      <div className="student__portfolio-link"></div>
+    </Link>
   )
 }
 

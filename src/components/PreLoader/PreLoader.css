@@ -20,6 +20,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: opacity .3s ease-in-out;
+}
+
+.preloader__button:hover {
+    cursor: pointer;
+    opacity: 0.65;
 }
 
 .preloader__text {

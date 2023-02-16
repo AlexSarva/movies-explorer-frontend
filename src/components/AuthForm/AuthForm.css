@@ -109,6 +109,12 @@
     font-size: 10px;
     line-height: 12px;
     color: #EE3465;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.auth__input-error_active {
+    opacity: 1;
 }
 
 .auth__button {
