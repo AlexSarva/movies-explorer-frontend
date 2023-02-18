@@ -54,3 +54,10 @@
 
     color: #fff;
 }
+
+@media screen and (max-width:1000px) {
+    .nav-tab {
+        top: 40px;
+        left: -65px;
+    }
+}

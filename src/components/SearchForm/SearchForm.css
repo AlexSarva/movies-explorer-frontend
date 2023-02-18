@@ -128,5 +128,12 @@
 .search__icon {
     width: 16px;
     height: 16px;
+}
 
+@media screen and (max-width: 1000px) {
+    .search {
+        width: calc(100% - 60px);
+        padding: 77px 30px 50px 30px;
+        row-gap: 35px;
+    }
 }

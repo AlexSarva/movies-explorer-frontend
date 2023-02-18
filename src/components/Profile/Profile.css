@@ -17,6 +17,7 @@
     font-size: 24px;
     line-height: 29px;
     text-align: center;
+    transition: all .2s ease-in-out;
 }
 
 .profile__form {
@@ -101,4 +102,18 @@
 .profile__logout:hover {
     cursor: pointer;
     opacity: 0.65;
+}
+
+@media screen and (max-width: 1000px) {
+    .profile__title {
+        margin-top: 235px;
+    }
+
+    .profile__form {
+        margin-top: 80px;
+    }
+
+    .profile__submit {
+        margin-top: 200px;
+    }
 }

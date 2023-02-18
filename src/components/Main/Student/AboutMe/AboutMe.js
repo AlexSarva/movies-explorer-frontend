@@ -1,4 +1,4 @@
-import Avatar from "../../../../images/avatar.jpeg";
+import Avatar from "../../../../images/avatar1.png";
 import '../../../../styles/link/link.css';
 import {Link} from "react-router-dom";
 

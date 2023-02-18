@@ -1,0 +1,36 @@
+.nav__menu {
+    position: fixed;
+    height: calc(100vh - 250px);
+    width: calc(100vw - 33%);
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 160px 0 90px 0;
+    background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav__menu_open {
+    z-index: 5;
+    opacity: 1;
+}
+
+.nav__close-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url(../../../images/close-btn.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 6;
+}

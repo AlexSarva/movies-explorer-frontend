@@ -1,0 +1,113 @@
+.nav {
+    width: 100%;
+}
+
+.nav_type_vertical {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav__elements {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    list-style: none;
+    column-gap: 16px;
+}
+
+.nav__elements_type_horizontal {
+    margin-left: 44px;
+    grid-template-columns: repeat(2, max-content) 1fr;
+    justify-content: start;
+    align-items: stretch;
+}
+
+.nav__elements_type_vertical {
+    height: 100%;
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: repeat(3, max-content) 1fr;
+    row-gap: 22px;
+    justify-content: start;
+    align-items: center;
+}
+
+.nav__element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__element_type_horizontal {
+    justify-self: end;
+}
+
+.nav__element_type_vertical {
+    align-self: end;
+    /*align-self: end;*/
+}
+
+.nav__link {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav__link_type_horizontal {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.nav__link_type_vertical {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.nav__link_active {
+    font-weight: 500;
+}
+
+.nav__account {
+    width: 100px;
+    height: 32px;
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #313131;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav__account-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+@media screen and (max-width:1000px) {
+    .nav_type_horizontal {
+        display: none;
+    }
+
+    .nav__type_vertical {
+        display: block;
+    }
+
+    .nav__link_active {
+        font-weight: 400;
+        border-bottom: 2px solid #fff;
+    }
+}

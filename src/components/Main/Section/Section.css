@@ -2,6 +2,7 @@
     width: calc(100% - 140px);
     padding: 110px 70px 110px 70px;
     color: #fff;
+    transition: all 0.2s ease-in-out;
 }
 
 .section_theme_black {
@@ -15,6 +16,7 @@
 /* TODO отличается отступ вверху/внизу раздела, возможно баг дизайна */
 .section_strange {
     padding: 100px 70px 100px 70px;
+    transition: all 0.2s ease-in-out;
 }
 
 .section__title {
@@ -33,4 +35,15 @@
     margin: 23px 0 0 0;
     padding: 0;
     border-top: 1px solid #DADADA;
+}
+
+@media screen and (max-width:1000px) {
+    .section {
+        width: calc(100% - 100px);
+        padding: 90px 50px 90px 50px;
+    }
+
+    .section_strange {
+        padding: 90px 50px 90px 50px;
+    }
 }

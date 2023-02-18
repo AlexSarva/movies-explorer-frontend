@@ -9,4 +9,14 @@
     row-gap: 38px;
     column-gap: 20px;
     list-style: none;
+    transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 1000px) {
+    .movies {
+        padding: 30px 30px 20px 30px;
+        grid-template-columns: repeat(auto-fill, minmax(339px, 1fr));
+        column-gap: 30px;
+        row-gap: 30px;
+    }
 }
