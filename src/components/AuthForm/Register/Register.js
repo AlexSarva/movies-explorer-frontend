@@ -30,7 +30,7 @@ function Register() {
 
   return (
     <AuthForm title="Добро пожаловать!" children={
-      <form onSubmit={handleSubmit} className="auth__form">
+      <form onSubmit={handleSubmit} className="auth__form auth__form_type_register">
         <div className="auth__input-container">
           <label className="auth__label" htmlFor="username">Имя</label>
           <input id="username" name="username" type="text" className="auth__input"
@@ -53,7 +53,7 @@ function Register() {
         <button type="submit" className="auth__button link">Зарегистрироваться</button>
         <div className="auth__alternate">
           <span>Уже зарегистрированы? </span>
-          <Link to="/signin" className="auth__link link_text">Войти</Link>
+          <Link to="/signin" className="auth__link link link_text">Войти</Link>
         </div>
       </form>
     } />

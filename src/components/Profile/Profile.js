@@ -42,8 +42,8 @@ function Profile() {
             <input id="email" name="email" type="email" className="profile__input" value={email} onChange={handleChangeEmail}
                    placeholder="" required minLength="6" maxLength="40"/>
           </div>
-          <button type="submit" className="profile__submit link_text">Редактировать</button>
-          <button type="button" onClick={handleLogOut} className="profile__logout link_text">Выйти из аккаунта</button>
+          <button type="submit" className="profile__submit link link_text">Редактировать</button>
+          <button type="button" onClick={handleLogOut} className="profile__logout link link_text">Выйти из аккаунта</button>
         </form>
       </section>
     </Fragment>

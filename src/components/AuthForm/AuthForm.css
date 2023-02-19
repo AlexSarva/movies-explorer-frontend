@@ -164,3 +164,54 @@
         margin-top: 160px;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .auth__container {
+        margin-top: 0;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth__title {
+        margin-top: 50px;
+    }
+
+    .auth__form_type_login {
+        margin-top: 90px;
+        width: 80%;
+        height: 520px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, max-content) 18px auto max-content;
+    }
+
+    .auth__form_type_register {
+        margin-top: 90px;
+        width: 80%;
+        height: 520px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, max-content) 18px auto max-content;
+    }
+
+    .auth__button {
+        align-self: end;
+    }
+
+    .auth__button_login {
+        margin: 0;
+    }
+
+    .auth__alternate {
+        justify-self: center;
+        font-size: 12px;
+        line-height: 15px;
+        margin-bottom: 30px;
+    }
+
+    .auth__link {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

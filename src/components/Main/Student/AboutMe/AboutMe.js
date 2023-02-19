@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 function AboutMe() {
   return (
     <article className="student__info">
+      <img className="student__avatar" src={Avatar} alt="avatar"/>
       <h3 className="student__name">Александр</h3>
       <p className="student__experience">Фронтенд-разработчик, 33 года</p>
       <p className="student__description">Я&#160;родился и&#160;живу в&#160;Москве,
@@ -13,7 +14,6 @@ function AboutMe() {
         Начал кодить 3&#160;года назад, в&#160;основном бэкенд разработка. После того,
         как прошёл курс по&#160;веб-разработке, начал заниматься фриланс-заказами и&#160;ушёл
         с&#160;постоянной работы.</p>
-      <img className="student__avatar" src={Avatar} alt="avatar"/>
       <Link to="https://github.com/AlexSarva"
             className="student__github link" target="_blank"
             rel="noopener noreferrer">Github</Link>

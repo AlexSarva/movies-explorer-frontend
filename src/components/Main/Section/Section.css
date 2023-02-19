@@ -47,3 +47,24 @@
         padding: 90px 50px 90px 50px;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .section {
+        width: calc(100% - 28px);
+        padding: 70px 14px 70px 14px;
+    }
+
+    .section_strange {
+        padding: 70px 14px 70px 14px;
+    }
+
+    .section__title {
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: -0.04em;
+    }
+
+    .section__content {
+        margin-top: 28px;
+    }
+}

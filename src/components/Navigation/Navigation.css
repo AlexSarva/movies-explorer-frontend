@@ -110,4 +110,14 @@
         font-weight: 400;
         border-bottom: 2px solid #fff;
     }
+
+    .nav__elements_type_vertical {
+        height: calc(100vh - 255px);
+    }
+}
+
+@media screen and (max-width:575px) {
+    .nav__elements_type_vertical {
+        height: calc(100vh - 430px);
+    }
 }

@@ -64,7 +64,7 @@
     letter-spacing: -0.04em;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .technology {
         margin-top: 80px;
     }
@@ -82,12 +82,37 @@
     }
 
     .technology__element {
-        width: 84px;
+        width: 100%;
         height: 57px;
     }
 
     .technology__element-text {
         font-size: 12px;
         line-height: 15px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .technology {
+        margin-top: 60px;
+    }
+
+    .technology__title {
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -0.04em;
+    }
+
+    .technology__description {
+        margin-top: 24px;
+        max-width: 300px;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: -0.04em;
+    }
+
+    .technology__elements {
+        margin-top: 50px;
+        grid-template-columns: repeat(2, 84px);
     }
 }

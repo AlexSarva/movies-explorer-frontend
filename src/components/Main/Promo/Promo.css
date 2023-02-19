@@ -117,3 +117,35 @@
         justify-self: center;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .promo {
+        width: calc(100% - 20px);
+        padding: 70px 10px 30px 10px;
+    }
+
+    .promo__image {
+        max-width: 210px;
+        margin-top: 0;
+        justify-self: center;
+    }
+
+    .promo__title {
+        max-width: 100%;
+        margin-top: 44px;
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -0.04em;
+    }
+
+    .promo__subtitle {
+        margin-top: 24px;
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .promo__button {
+        margin-top: 80px;
+        justify-self: center;
+    }
+}

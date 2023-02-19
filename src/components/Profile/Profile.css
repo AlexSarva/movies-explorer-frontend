@@ -1,6 +1,5 @@
 .profile {
     width: 100%;
-    min-height: calc(100vh - 74px);
     background: #202020;
     color: #fff;
     display: flex;
@@ -10,6 +9,7 @@
 }
 
 .profile__title {
+    width: 90%;
     margin: 74px 0 0 0;
     padding: 0;
     font-style: normal;
@@ -86,7 +86,7 @@
 }
 
 .profile__logout {
-    margin: 16px 0 0 0;
+    margin: 16px 0 50px 0;
     padding: 0;
     border: none;
     background: transparent;
@@ -115,5 +115,23 @@
 
     .profile__submit {
         margin-top: 200px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .profile__form {
+        width: 260px;
+    }
+
+    .profile__title {
+        margin-top: 70px;
+    }
+
+    .profile__form {
+        margin-top: 65px;
+    }
+
+    .profile__submit {
+        margin-top: 365px;
     }
 }

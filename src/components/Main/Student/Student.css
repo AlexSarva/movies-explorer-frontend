@@ -185,3 +185,72 @@
         font-size: 28px;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .student {
+        margin-top: 60px;
+    }
+
+    .student__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .student__avatar {
+        align-self: center;
+        max-width: 292px;
+    }
+
+    .student__name {
+        margin-top: 40px;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -0.04em;
+    }
+
+    .student__experience {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .student__description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .student__github {
+        margin-top: 26px; /* TODO: исправить на 40px*/
+        align-self: start;
+    }
+
+    .student__portfolio {
+        margin-top: 70px;
+    }
+
+    .student__portfolio-title {
+        font-size: 14px;
+        line-height: 20px;
+        color: #A0A0A0;
+    }
+
+    .student__portfolio-sites {
+        margin-top: 20px;
+    }
+
+    .student__portfolio-site {
+        height: 67px;
+    }
+
+    .student__portfolio-type {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .student__portfolio-link {
+        width: 10px;
+        height: 10px;
+        margin: 0 5px 0 0;
+    }
+}

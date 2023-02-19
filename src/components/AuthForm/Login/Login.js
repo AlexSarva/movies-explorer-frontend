@@ -24,7 +24,7 @@ function Login() {
 
   return (
     <AuthForm title="Рады видеть!" children={
-      <form onSubmit={handleSubmit} className="auth__form">
+      <form onSubmit={handleSubmit} className="auth__form auth__form_type_login">
         <div className="auth__input-container">
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input id="email" name="email" type="email" className="auth__input auth__input_type_email" value={email} onChange={handleChangeEmail}
@@ -39,7 +39,7 @@ function Login() {
         <button type="submit" className="auth__button auth__button_login link">Войти</button>
         <div className="auth__alternate">
           <span>Ещё не зарегистрированы? </span>
-          <Link to="/signup" className="auth__link link_text">Регистрация</Link>
+          <Link to="/signup" className="auth__link link link_text">Регистрация</Link>
         </div>
       </form>
     } />

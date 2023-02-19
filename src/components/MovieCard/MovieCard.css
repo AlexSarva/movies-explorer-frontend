@@ -93,3 +93,10 @@
     line-height: 24px;
     color: #8B8B8B;
 }
+
+@media screen and (max-width: 575px) {
+    .movie-card__title {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

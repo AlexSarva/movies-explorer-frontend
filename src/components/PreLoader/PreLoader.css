@@ -41,3 +41,13 @@
         padding: 40px 30px 82px 30px;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .preloader {
+        padding: 35px 10px 100px 10px;
+    }
+
+    .preloader__button {
+        width: 240px;
+    }
+}

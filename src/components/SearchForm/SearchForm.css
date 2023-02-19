@@ -137,3 +137,18 @@
         row-gap: 35px;
     }
 }
+
+@media screen and (max-width: 575px) {
+    .search {
+        width: calc(100% - 28px);
+        padding: 80px 14px 40px 14px;
+        row-gap: 47px;
+        grid-template-rows: 44px auto;
+    }
+
+    .search__input {
+        padding-left: 14px;
+        grid-area: search;
+        height: 100%;
+    }
+}

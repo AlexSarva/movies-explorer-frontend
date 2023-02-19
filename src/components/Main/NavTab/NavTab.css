@@ -51,7 +51,6 @@
     font-weight: 500;
     font-size: 10px;
     line-height: 16px;
-
     color: #fff;
 }
 
@@ -59,5 +58,12 @@
     .nav-tab {
         top: 40px;
         left: -65px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .nav-tab {
+        left: -62px;
+        top: -44px;
     }
 }

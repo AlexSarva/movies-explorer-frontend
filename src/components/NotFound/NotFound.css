@@ -48,3 +48,31 @@
     text-decoration: none;
     color: #4285F4;
 }
+
+@media screen and (max-width: 575px) {
+    .not-found {
+        justify-content: flex-end;
+    }
+
+    .not-found__container {
+        margin-top: 0;
+    }
+
+    .not-found__error-code {
+        font-size: 80px;
+        line-height: 97px;
+    }
+
+    .not-found__error {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .not-found__back {
+        margin-top: 285px;
+        margin-bottom: 35px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
