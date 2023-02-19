@@ -1,4 +1,4 @@
-.preloader {
+.paginator {
     width: 100%;
     margin: 0;
     padding: 40px 70px 82px 70px;
@@ -10,7 +10,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-.preloader__button {
+.paginator__button {
     width: 320px;
     height: 36px;
     border: 1px solid #424242;
@@ -24,12 +24,12 @@
     transition: opacity .3s ease-in-out;
 }
 
-.preloader__button:hover {
+.paginator__button:hover {
     cursor: pointer;
     opacity: 0.65;
 }
 
-.preloader__text {
+.paginator__text {
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -37,17 +37,17 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .preloader {
+    .paginator {
         padding: 40px 30px 82px 30px;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .preloader {
+    .paginator {
         padding: 35px 10px 100px 10px;
     }
 
-    .preloader__button {
+    .paginator__button {
         width: 240px;
     }
 }

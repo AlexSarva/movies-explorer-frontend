@@ -1,12 +1,12 @@
 import MovieCardList from '../MoviesCardList/MoviesCardList'
-import PreLoader from '../PreLoader/PreLoader'
+import Paginator from '../Paginator/Paginator'
 import { Fragment } from 'react'
 
 function Movies () {
   return (
     <Fragment>
       <MovieCardList main={true} cardsCnt={16}/>
-      <PreLoader />
+      <Paginator />
     </Fragment>
   )
 }
