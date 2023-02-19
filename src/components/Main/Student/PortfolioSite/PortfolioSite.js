@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import '../../../../styles/link/link.css';
-function PortfolioSite(props) {
-  const {link, title} = props.siteInfo;
+import { Link } from 'react-router-dom'
+import '../../../../styles/link/link.css'
+function PortfolioSite (props) {
+  const { link, title } = props.siteInfo
 
   return (
     <Link to={link} className="student__portfolio-site link"
@@ -12,4 +12,4 @@ function PortfolioSite(props) {
   )
 }
 
-export default PortfolioSite;
+export default PortfolioSite

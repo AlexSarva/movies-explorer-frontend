@@ -1,7 +1,7 @@
-import './Footer.css';
-import {Link} from "react-router-dom";
+import './Footer.css'
+import { Link } from 'react-router-dom'
 
-function Footer() {
+function Footer () {
   return (
     <footer className="footer">
       <p className="footer__text">Учебный проект Яндекс.Практикум&#160;х&#160;BeatFilm.</p>
@@ -24,4 +24,4 @@ function Footer() {
   )
 }
 
-export default Footer;
+export default Footer

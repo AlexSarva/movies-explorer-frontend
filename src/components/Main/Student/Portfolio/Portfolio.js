@@ -1,7 +1,7 @@
-import {Sites} from "../../../../utils/constants";
-import PortfolioSite from "../PortfolioSite/PortfolioSite";
+import { Sites } from '../../../../utils/constants'
+import PortfolioSite from '../PortfolioSite/PortfolioSite'
 
-function Portfolio() {
+function Portfolio () {
   return (
     <div className="student__portfolio">
       <p className="student__portfolio-title">Портфолио</p>
@@ -14,4 +14,4 @@ function Portfolio() {
   )
 }
 
-export default Portfolio;
+export default Portfolio

@@ -1,7 +1,7 @@
-import './NotFound.css';
-import {Link} from "react-router-dom";
+import './NotFound.css'
+import { Link } from 'react-router-dom'
 
-function NotFound() {
+function NotFound () {
   return (
     <div className="not-found">
       <div className="not-found__container">
@@ -13,4 +13,4 @@ function NotFound() {
   )
 }
 
-export default NotFound;
+export default NotFound

@@ -1,11 +1,11 @@
-import './Layout.css';
-import {Fragment} from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import {Outlet} from "react-router-dom";
-import SearchForm from "../SearchForm/SearchForm";
+import './Layout.css'
+import { Fragment } from 'react'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import { Outlet } from 'react-router-dom'
+import SearchForm from '../SearchForm/SearchForm'
 
-function Layout() {
+function Layout () {
   return (
     <Fragment>
       <Header />
@@ -18,4 +18,4 @@ function Layout() {
   )
 }
 
-export default Layout;
+export default Layout

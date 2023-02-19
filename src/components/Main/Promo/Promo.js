@@ -1,21 +1,21 @@
-import './Promo.css';
-import '../../../styles/link/link.css';
-import LeadImage from '../../../images/globus.svg';
-import NavTab from "../NavTab/NavTab";
-import {useState} from "react";
+import './Promo.css'
+import '../../../styles/link/link.css'
+import LeadImage from '../../../images/globus.svg'
+import NavTab from '../NavTab/NavTab'
+import { useState } from 'react'
 
-function Promo() {
-  const [isOpen, setIsOpen] = useState(false);
+function Promo () {
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen)
   }
 
   const handleClose = () => {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
-  return  (
+  return (
     <section className="promo">
       <h1 className="promo__title">Учебный проект студента факультета Веб&zwj;-&zwj;разработки.</h1>
       <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его создателя.</p>
@@ -28,4 +28,4 @@ function Promo() {
   )
 }
 
-export default Promo;
+export default Promo

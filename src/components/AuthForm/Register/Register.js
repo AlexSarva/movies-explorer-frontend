@@ -1,35 +1,34 @@
-import '../AuthForm.css';
-import '../../../styles/link/link.css';
-import AuthForm from "../AuthForm";
-import {Link, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import '../AuthForm.css'
+import '../../../styles/link/link.css'
+import AuthForm from '../AuthForm'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
-function Register() {
-
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Register () {
+  const navigate = useNavigate()
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleChangeUsername = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value)
   }
 
   const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value)
   }
 
   const handleChangePassword = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/movies",{replace: true});
+    e.preventDefault()
+    navigate('/movies', { replace: true })
   }
 
   return (
-    <AuthForm title="Добро пожаловать!" children={
+    <AuthForm title="Добро пожаловать!">
       <form onSubmit={handleSubmit} className="auth__form auth__form_type_register">
         <div className="auth__input-container">
           <label className="auth__label" htmlFor="username">Имя</label>
@@ -56,8 +55,8 @@ function Register() {
           <Link to="/signin" className="auth__link link link_text">Войти</Link>
         </div>
       </form>
-    } />
+    </AuthForm>
   )
 }
 
-export default Register;
+export default Register

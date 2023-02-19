@@ -1,6 +1,6 @@
-import './PreLoader.css';
+import './PreLoader.css'
 
-function PreLoader() {
+function PreLoader () {
   return (
     <section className="preloader">
       <button type="button" className="preloader__button">
@@ -10,4 +10,4 @@ function PreLoader() {
   )
 }
 
-export default PreLoader;
+export default PreLoader

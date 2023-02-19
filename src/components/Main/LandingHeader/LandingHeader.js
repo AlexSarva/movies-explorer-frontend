@@ -1,9 +1,9 @@
-import './LandingHeader.css';
-import '../../../styles/link/link.css';
-import Logo from "../../Logo/Logo";
-import {Link} from "react-router-dom";
+import './LandingHeader.css'
+import '../../../styles/link/link.css'
+import Logo from '../../Logo/Logo'
+import { Link } from 'react-router-dom'
 
-function LandingHeader() {
+function LandingHeader () {
   return (
     <header className="landing-header">
       <Logo area="landing-header"/>
@@ -13,4 +13,4 @@ function LandingHeader() {
   )
 }
 
-export default LandingHeader;
+export default LandingHeader

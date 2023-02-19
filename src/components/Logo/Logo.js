@@ -1,13 +1,12 @@
-import './Logo.css';
-import '../../styles/link/link.css';
-import {useNavigate} from "react-router-dom";
-function Logo(props) {
-
-  const navigate = useNavigate();
+import './Logo.css'
+import '../../styles/link/link.css'
+import { useNavigate } from 'react-router-dom'
+function Logo (props) {
+  const navigate = useNavigate()
 
   const handleClick = (e) => {
-    e.preventDefault();
-    navigate('/', {replace: true})
+    e.preventDefault()
+    navigate('/', { replace: true })
   }
 
   return (
@@ -15,4 +14,4 @@ function Logo(props) {
   )
 }
 
-export default Logo;
+export default Logo

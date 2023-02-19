@@ -1,39 +1,38 @@
-import './SearchForm.css';
-import searchIcon from '../../images/search-icon.svg';
-import {useEffect, useRef, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import './SearchForm.css'
+import searchIcon from '../../images/search-icon.svg'
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-function SearchForm() {
+function SearchForm () {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const search = useRef(null)
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const search = useRef(null);
-
-  const [isCheckboxActive, setIsCheckboxActive] = useState(true);
+  const [isCheckboxActive, setIsCheckboxActive] = useState(true)
 
   const handleCheckboxChange = () => {
-    setIsCheckboxActive(!isCheckboxActive);
+    setIsCheckboxActive(!isCheckboxActive)
   }
 
   const clearSearch = () => {
-    search.current.value = '';
+    search.current.value = ''
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    clearSearch();
-    navigate(location.pathname);
+    e.preventDefault()
+    clearSearch()
+    navigate(location.pathname)
   }
 
   useEffect(() => {
-    clearSearch();
-  },[])
+    clearSearch()
+  }, [])
 
   return (
     <form onSubmit={handleSubmit} className="search">
       <input ref={search} className="search__input" type="text" placeholder="Фильм" />
       <div className="search__filter">
-        <label className={`search__switch ${isCheckboxActive && "search__switch_active"}`}>
+        <label className={`search__switch ${isCheckboxActive && 'search__switch_active'}`}>
           <input className="search__checkbox" type="checkbox" checked={isCheckboxActive} onChange={handleCheckboxChange} />
           <span className="search__handle"></span>
         </label>
@@ -46,4 +45,4 @@ function SearchForm() {
   )
 }
 
-export default SearchForm;
+export default SearchForm

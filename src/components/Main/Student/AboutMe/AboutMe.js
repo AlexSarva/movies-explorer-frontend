@@ -1,8 +1,8 @@
-import Avatar from "../../../../images/avatar1.png";
-import '../../../../styles/link/link.css';
-import {Link} from "react-router-dom";
+import Avatar from '../../../../images/avatar1.png'
+import '../../../../styles/link/link.css'
+import { Link } from 'react-router-dom'
 
-function AboutMe() {
+function AboutMe () {
   return (
     <article className="student__info">
       <img className="student__avatar" src={Avatar} alt="avatar"/>
@@ -21,4 +21,4 @@ function AboutMe() {
   )
 }
 
-export default AboutMe;
+export default AboutMe

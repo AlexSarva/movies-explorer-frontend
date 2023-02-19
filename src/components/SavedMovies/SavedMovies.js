@@ -1,7 +1,7 @@
-import './SavedMovies.css';
-import MovieCardList from "../MoviesCardList/MoviesCardList";
-import {Fragment} from "react";
-function SavedMovies() {
+import './SavedMovies.css'
+import MovieCardList from '../MoviesCardList/MoviesCardList'
+import { Fragment } from 'react'
+function SavedMovies () {
   return (
     <Fragment>
       <MovieCardList main={false} cardsCnt={3}/>
@@ -10,4 +10,4 @@ function SavedMovies() {
   )
 }
 
-export default SavedMovies;
+export default SavedMovies

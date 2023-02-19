@@ -1,4 +1,4 @@
-function DiplomInfo(props) {
+function DiplomInfo (props) {
   return (
     <div className="project__diplom-info">
       <h3 className="project__diplom-title">{props.title}</h3>
@@ -7,4 +7,4 @@ function DiplomInfo(props) {
   )
 }
 
-export default DiplomInfo;
+export default DiplomInfo

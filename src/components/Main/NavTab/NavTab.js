@@ -1,11 +1,10 @@
-import './NavTab.css';
-import '../../../styles/link/link.css';
-import {HashLink} from "react-router-hash-link";
+import './NavTab.css'
+import '../../../styles/link/link.css'
+import { HashLink } from 'react-router-hash-link'
 
-function NavTab(props) {
-
+function NavTab (props) {
   return (
-    <nav onMouseLeave={props.onMouseLeave} className={`nav-tab ${props.isOpen ? "nav-tab_active" : null}`}>
+    <nav onMouseLeave={props.onMouseLeave} className={`nav-tab ${props.isOpen ? 'nav-tab_active' : null}`}>
       <ul className="nav-tab__elements">
         <li className="nav-tab__element">
           <HashLink to="#about-project" className="nav-tab__link link" smooth >
@@ -27,4 +26,4 @@ function NavTab(props) {
   )
 }
 
-export default NavTab;
+export default NavTab

@@ -1,6 +1,6 @@
-import Logo from "../Logo/Logo";
+import Logo from '../Logo/Logo'
 
-function AuthForm(props) {
+function AuthForm (props) {
   return (
     <section className="auth">
       <div className="auth__container">
@@ -12,4 +12,4 @@ function AuthForm(props) {
   )
 }
 
-export default AuthForm;
+export default AuthForm

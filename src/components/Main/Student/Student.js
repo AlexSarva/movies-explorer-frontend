@@ -1,19 +1,17 @@
-import './Student.css';
-import AboutMe from "./AboutMe/AboutMe";
-import Portfolio from "./Portfolio/Portfolio";
-import Section from "../Section/Section";
+import './Student.css'
+import AboutMe from './AboutMe/AboutMe'
+import Portfolio from './Portfolio/Portfolio'
+import Section from '../Section/Section'
 
-function Student() {
+function Student () {
   return (
-    <Section title="Студент" theme="black" sectionID="student"
-             children={
-               <div className="student">
-                 <AboutMe />
-                 <Portfolio />
-               </div>
-             }>
+    <Section title="Студент" theme="black" sectionID="student">
+      <div className="student">
+       <AboutMe />
+       <Portfolio />
+      </div>
     </Section>
   )
 }
 
-export default Student;
+export default Student

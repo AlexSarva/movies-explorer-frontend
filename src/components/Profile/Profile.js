@@ -1,36 +1,35 @@
-import './Profile.css';
-import '../../styles/link/link.css';
-import Header from "../Header/Header";
-import {Fragment, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import './Profile.css'
+import '../../styles/link/link.css'
+import Header from '../Header/Header'
+import { Fragment, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Profile() {
-
-  const [username, setUsername] = useState('Александр');
-  const [email, setEmail] = useState('test@test.ru');
-  const navigate = useNavigate();
+function Profile () {
+  const [username, setUsername] = useState('Александр')
+  const [email, setEmail] = useState('test@test.ru')
+  const navigate = useNavigate()
 
   const handleChangeUsername = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value)
   }
 
   const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
   }
 
   const handleLogOut = () => {
-    navigate('/', {replace: true});
+    navigate('/', { replace: true })
   }
 
   return (
     <Fragment>
       <Header />
       <section className="profile">
-        <h2 className="profile__title">{`Привет, Александр!`}</h2>
+        <h2 className="profile__title">{'Привет, Александр!'}</h2>
         <form onSubmit={handleSubmit} className="profile__form">
           <div className="profile__input-container">
             <label className="profile__label" htmlFor="username">Имя</label>
@@ -50,4 +49,4 @@ function Profile() {
   )
 }
 
-export default Profile;
+export default Profile
