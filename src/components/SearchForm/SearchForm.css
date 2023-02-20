@@ -39,7 +39,7 @@
 }
 
 .search__input:focus {
-    outline: 0;
+    outline: 1px solid rgba(132, 245, 132, 0.5);
 }
 
 .search__filter {

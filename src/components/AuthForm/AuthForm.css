@@ -77,10 +77,14 @@
     font-size: 14px;
     line-height: 34px;
     color: white;
+    transition: background 0.3s ease-in-out;
 }
 
 .auth__input:focus {
-    outline: 0;
+    outline: 1px solid rgba(139, 139, 139, 0.25);
+    background: rgba(66, 66, 66, 0.15);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 15px;
 }
 
 .auth__input::placeholder {
