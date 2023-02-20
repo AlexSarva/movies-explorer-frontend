@@ -16,9 +16,9 @@ function NavigationMenu (props) {
   }, [props])
 
   return (
-    <div className={`nav__menu ${props.isOpen ? 'nav__menu_open' : null}`}>
+    <div className={`nav-menu ${props.isOpen ? 'nav-menu_open' : null}`}>
       <Navigation onChoose={props.onClose} type="vertical"/>
-      <button onClick={props.onClose} type="button" className="nav__close-button link"></button>
+      <button onClick={props.onClose} type="button" className="nav-menu__close-button link"></button>
     </div>
   )
 }

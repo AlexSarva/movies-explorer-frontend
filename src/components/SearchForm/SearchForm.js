@@ -30,7 +30,7 @@ function SearchForm () {
 
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input ref={search} className="search__input" type="text" placeholder="Фильм" />
+      <input ref={search} className="search__input" type="text" placeholder="Фильм" required/>
       <div className="search__filter">
         <label className={`search__switch ${isCheckboxActive && 'search__switch_active'}`}>
           <input className="search__checkbox" type="checkbox" checked={isCheckboxActive} onChange={handleCheckboxChange} />
