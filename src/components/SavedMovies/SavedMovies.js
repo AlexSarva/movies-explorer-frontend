@@ -5,7 +5,7 @@ function SavedMovies () {
   return (
     <Fragment>
       <MovieCardList main={false} cardsCnt={3}/>
-      <span className="saved-movies saved-movies__span"></span>
+      <span className="movies-span"></span>
     </Fragment>
   )
 }

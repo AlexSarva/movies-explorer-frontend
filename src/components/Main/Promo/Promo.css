@@ -59,6 +59,11 @@
     transition: all 0.1s ease-in-out;
 }
 
+.promo__button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
 .promo__button-text {
     font-style: normal;
     font-weight: 500;

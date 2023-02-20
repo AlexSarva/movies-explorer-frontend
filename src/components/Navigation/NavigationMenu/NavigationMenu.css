@@ -1,4 +1,4 @@
-.nav__menu {
+.nav-menu {
     position: fixed;
     height: 100vh;
     width: calc(100vw - 33%);
@@ -15,12 +15,12 @@
     transition: all 0.3s ease-in-out;
 }
 
-.nav__menu_open {
+.nav-menu_open {
     z-index: 5;
     opacity: 1;
 }
 
-.nav__menu_open:before {
+.nav-menu_open:before {
     position: fixed;
     top: 0;
     right: 0;
@@ -31,7 +31,7 @@
     z-index: -1;
 }
 
-.nav__close-button {
+.nav-menu__close-button {
     width: 40px;
     height: 40px;
     border: none;
@@ -46,24 +46,24 @@
     z-index: 6;
 }
 
-.nav__close-button:focus-visible {
+.nav-menu__close-button:focus-visible {
     outline: none;
 }
 
-.nav__close-button:focus {
+.nav-menu__close-button:focus {
     outline: none;
 }
 
 
 @media screen and (max-width: 1000px) {
-    .nav__close-button {
+    .nav-menu__close-button {
         width: 30px;
         height: 30px;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .nav__menu {
+    .nav-menu {
         padding-top: 140px;
         height: 100vh;
         width: 100vw;
