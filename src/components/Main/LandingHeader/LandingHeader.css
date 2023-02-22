@@ -1,0 +1,64 @@
+.landing-header {
+    width: calc(100% - 140px);
+    height: 74px;
+    padding: 0 70px 0 70px;
+    background: #073042;
+    display: grid;
+    grid-template-columns: 38px 1fr 90px 76px;
+    grid-template-areas: "headerLogo . register login";
+    align-items: center;
+    gap: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.landing-header__register {
+    grid-area: register;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 32px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.landing-header__login {
+    grid-area: login;
+    width: 100%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 32px;
+    height: 32px;
+    color: #000;
+    background: #3DDC84;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .landing-header {
+        width: calc(100% - 60px);
+        padding: 0 30px 0 30px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .landing-header {
+        width: calc(100% - 28px);
+        padding: 0 14px 0 14px;
+        grid-template-columns: 38px auto 65px 55px;
+        gap: 14px;
+    }
+
+    .landing-header__register {
+        font-size: 10px;
+        line-height: 32px;
+        align-self: center;
+    }
+}

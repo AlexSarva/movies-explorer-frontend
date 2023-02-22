@@ -1,0 +1,23 @@
+.layout-content {
+    width: calc(100% - 140px);
+    padding: 0 70px 0 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 1000px) {
+    .layout-content {
+        width: calc(100% - 60px);
+        padding: 0 30px 0 30px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .layout-content {
+        width: calc(100% - 20px);
+        padding: 0 10px 0 10px;
+    }
+}

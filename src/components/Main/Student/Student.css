@@ -1,0 +1,256 @@
+.student {
+    width: 100%;
+    margin: 66px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.student__info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 270px;
+    grid-template-rows: 60px 40px auto 20px;
+    /*grid-template-rows: repeat(4, min-content);*/
+    column-gap: 20px;
+    grid-template-areas:
+    "name avatar"
+    "experience avatar"
+    "description avatar"
+    "github avatar";
+    justify-content: space-between;
+}
+
+.student__name {
+    grid-area: name;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+}
+
+.student__experience {
+    grid-area: experience;
+    margin: 18px 0 0 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    mix-blend-mode: normal;
+}
+
+.student__description {
+    max-width: 600px;
+    grid-area: description;
+    margin: 20px 0 0 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+}
+
+.student__github {
+    grid-area: github;
+    align-self: end;
+    margin: 0 0 0 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.student__avatar {
+    grid-area: avatar;
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+}
+
+.student__portfolio {
+    width: 100%;
+    margin: 100px 0 0 0;
+    padding: 0;
+}
+
+.student__portfolio-title {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+    mix-blend-mode: normal;
+}
+
+.student__portfolio-sites {
+    margin: 30px 0 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.student__portfolio-site {
+    width: 100%;
+    height: 89px;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #424242;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.student__portfolio-site:first-child {
+    border: none;
+}
+
+.student__portfolio-type {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+}
+
+.student__portfolio-link {
+    width: 18px;
+    height: 18px;
+    margin: 5px 5px 0 0;
+    padding: 0;
+    background-image: url(../../../images/siteLink.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+
+}
+
+@media screen and (max-width:1000px) {
+
+    .student__info {
+        grid-template-columns: 1fr 255px;
+        grid-template-rows: 40px 35px auto 20px;
+        column-gap: 50px;
+    }
+
+    .student__name {
+        font-size: 40px;
+        line-height: 40px;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+    }
+
+    .student__experience {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .student__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .student__portfolio {
+        margin-top: 90px;
+    }
+
+    .student__portfolio-site {
+        border-top: 1px solid #E6E6E6;
+    }
+
+    .student__portfolio-type {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .student {
+        margin-top: 60px;
+    }
+
+    .student__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .student__avatar {
+        align-self: center;
+        max-width: 292px;
+    }
+
+    .student__name {
+        margin-top: 40px;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -0.04em;
+    }
+
+    .student__experience {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .student__description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .student__github {
+        margin-top: 26px; /* TODO: исправить на 40px*/
+        align-self: start;
+    }
+
+    .student__portfolio {
+        margin-top: 70px;
+    }
+
+    .student__portfolio-title {
+        font-size: 14px;
+        line-height: 20px;
+        color: #A0A0A0;
+    }
+
+    .student__portfolio-sites {
+        margin-top: 20px;
+    }
+
+    .student__portfolio-site {
+        height: 67px;
+    }
+
+    .student__portfolio-type {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .student__portfolio-link {
+        width: 10px;
+        height: 10px;
+        margin: 0 5px 0 0;
+    }
+}
