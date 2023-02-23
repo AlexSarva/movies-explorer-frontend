@@ -1,12 +1,14 @@
 import './Profile.css'
 import '../../styles/link/link.css'
 import Header from '../Header/Header'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hook/useAuth'
 
 function Profile () {
   const [username, setUsername] = useState('Александр')
   const [email, setEmail] = useState('test@test.ru')
+  const { user, signout, patchUser } = useAuth()
   const navigate = useNavigate()
 
   const handleChangeUsername = (e) => {
@@ -19,17 +21,23 @@ function Profile () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    patchUser({ name: username, email })
   }
 
   const handleLogOut = () => {
-    navigate('/', { replace: true })
+    signout(() => navigate('/', { replace: true }))
   }
+
+  useEffect(() => {
+    setUsername(user.name)
+    setEmail(user.email)
+  }, [user])
 
   return (
     <Fragment>
       <Header />
       <section className="profile">
-        <h2 className="profile__title">{'Привет, Александр!'}</h2>
+        <h2 className="profile__title">{`Привет, ${user.name}!`}</h2>
         <form onSubmit={handleSubmit} className="profile__form">
           <div className="profile__input-container">
             <label className="profile__label" htmlFor="username">Имя</label>

@@ -3,10 +3,12 @@ import '../../../styles/link/link.css'
 import AuthForm from '../AuthForm'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from '../../../hook/useAuth'
 function Login () {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { signin } = useAuth()
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value)
@@ -18,7 +20,7 @@ function Login () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/movies', { replace: true })
+    signin({ email, password }, () => navigate('/movies', { replace: true }))
   }
 
   return (

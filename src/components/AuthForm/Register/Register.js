@@ -3,15 +3,17 @@ import '../../../styles/link/link.css'
 import AuthForm from '../AuthForm'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useAuth } from '../../../hook/useAuth'
 
 function Register () {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { signup } = useAuth()
 
-  const handleChangeUsername = (e) => {
-    setUsername(e.target.value)
+  const handleChangeName = (e) => {
+    setName(e.target.value)
   }
 
   const handleChangeEmail = (e) => {
@@ -24,7 +26,7 @@ function Register () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate('/movies', { replace: true })
+    signup({ name, email, password }, () => navigate('/movies', { replace: true }))
   }
 
   return (
@@ -33,7 +35,7 @@ function Register () {
         <div className="auth__input-container">
           <label className="auth__label" htmlFor="username">Имя</label>
           <input id="username" name="username" type="text" className="auth__input"
-                 value={username} onChange={handleChangeUsername}
+                 value={name} onChange={handleChangeName}
                  placeholder="" required minLength="6" maxLength="40"/>
         </div>
         <div className="auth__input-container">
