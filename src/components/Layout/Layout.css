@@ -6,6 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     transition: all 0.2s ease-in-out;
+    flex: 1 1 auto;
 }
 
 @media screen and (max-width: 1000px) {

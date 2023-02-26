@@ -1,6 +1,6 @@
 .movie-card {
     width: 100%;
-    /*height: 230px;*/
+    /*height: 340px;*/
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -9,9 +9,19 @@
     padding: 0;
 }
 
+.movie-card__link {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
 .movie-card__image {
     width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     object-fit: cover;
+    box-sizing: border-box;
 }
 
 .movie-card__description {

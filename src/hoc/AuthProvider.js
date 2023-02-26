@@ -78,6 +78,9 @@ export const AuthProvider = ({ children }) => {
           setUser(res)
         }
       })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   useEffect(() => {

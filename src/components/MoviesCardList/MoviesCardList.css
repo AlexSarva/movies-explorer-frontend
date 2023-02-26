@@ -29,9 +29,8 @@
 
 @media screen and (max-width: 575px) {
     .movies {
-        width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         padding: 10px 10px 20px 10px;
-        grid-template-columns: 1fr;
         column-gap: 30px;
         row-gap: 30px;
     }
