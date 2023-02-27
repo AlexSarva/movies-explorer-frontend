@@ -8,6 +8,8 @@ import { SearchEngine } from '../../utils/SearchEngine'
 import Preloader from '../Preloader/Preloader'
 import SearchError from '../SearchError/SearchError'
 import { useWindowDimensions } from '../../hook/useWindowDimensions'
+import mainApi from '../../utils/MainApi'
+import { useAuth } from '../../hook/useAuth'
 
 function Movies () {
   const { moviesSearch, updateMovies, appendMovies } = useSearch()
@@ -19,26 +21,35 @@ function Movies () {
   const [initCardsCount, setInitCardsCount] = useState(4)
   const [addCardsCount, setAddCardsCount] = useState(2)
   const { height, width } = useWindowDimensions()
+  const { token } = useAuth()
 
   const checkPagination = (moviesLength, limit) => {
     moviesLength < limit ? setIsActivePaginator(false) : setIsActivePaginator(true)
   }
 
-  const onSearch = () => {
-    initMovies()
-  }
-
   const prepareFirstSearch = () => {
     setIsApiError(false)
     setIsActiveNoContent(false)
+    updateMovies([])
     setIsLoading(true)
   }
 
-  const initMovies = () => {
+  const onSearch = () => {
     prepareFirstSearch()
-    movieApi.getMovies()
-      .then((res) => {
-        return SearchEngine(res, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0)
+    initMovies()
+  }
+
+  const initMovies = () => {
+    Promise.all([movieApi.getMovies(), mainApi.getMovies(token)])
+      .then(([movies, savedMovies]) => {
+        const clearMovies = SearchEngine(movies, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0)
+        const processedMovie = clearMovies.map((movie) => {
+          movie.isLiked = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)
+          movie._id = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id) && savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)._id
+          return movie
+        })
+        console.log(processedMovie)
+        return processedMovie
       })
       .then((res) => {
         if (res.length > 0) {
