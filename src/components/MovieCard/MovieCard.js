@@ -37,16 +37,23 @@ function MovieCard (props) {
         image: imgSrc
       }, token)
         .then((res) => {
-          console.log(res)
-          // updateMovies((state) => state.map((oldMovie) => oldMovie.id === res.movieId && { ...oldMovie, isLiked: true }))
+          const newMovies = moviesSearch.movies.map((movie) => {
+            if (movie.id === res.movieId) {
+              movie.isLiked = true
+              movie._id = res._id
+              return movie
+            } else {
+              return movie
+            }
+          })
+          updateMovies(newMovies)
         })
         .catch((err) => {
           console.log(err)
         })
     } else {
       mainApi.deleteMovie(props.movie._id, token)
-        .then((res) => {
-          console.log(res)
+        .then(() => {
           const newMovies = moviesSearch.movies.map((movie) => {
             if (movie._id === props.movie._id) {
               movie.isLiked = false
@@ -63,8 +70,6 @@ function MovieCard (props) {
         })
     }
   }
-
-  // eslint-disable-next-line no-unused-vars
 
   return (
     <article className="movie-card fade fade_type_in">

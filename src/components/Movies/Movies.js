@@ -43,13 +43,11 @@ function Movies () {
     Promise.all([movieApi.getMovies(), mainApi.getMovies(token)])
       .then(([movies, savedMovies]) => {
         const clearMovies = SearchEngine(movies, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0)
-        const processedMovie = clearMovies.map((movie) => {
+        return clearMovies.map((movie) => {
           movie.isLiked = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)
           movie._id = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id) && savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)._id
           return movie
         })
-        console.log(processedMovie)
-        return processedMovie
       })
       .then((res) => {
         if (res.length > 0) {
