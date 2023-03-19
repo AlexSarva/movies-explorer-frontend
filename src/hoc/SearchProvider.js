@@ -42,9 +42,14 @@ export const SearchProvider = ({ children }) => {
   }, [moviesSearch])
 
   const value = useMemo(() => ({
-    moviesSearch, toggleShortMovie, updateMovieQuery, updateMovies, appendMovies
+    moviesSearch,
+    toggleShortMovie,
+    updateMovieQuery,
+    updateMovies,
+    appendMovies
   }),
-  [moviesSearch, toggleShortMovie, updateMovieQuery, updateMovies, appendMovies]
+  [moviesSearch, toggleShortMovie,
+    updateMovieQuery, updateMovies, appendMovies]
   )
 
   return <SearchContext.Provider value={value}>

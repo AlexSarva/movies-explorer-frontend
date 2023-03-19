@@ -9,9 +9,7 @@ function MovieCard (props) {
   const { token } = useAuth()
   // eslint-disable-next-line no-unused-vars
   const { updateMovies, moviesSearch } = useSearch()
-  const { duration, image, trailerLink, country, director, nameRU, nameEN, year, description, isLiked } = props.movie
-  const imgSrc = 'https://api.nomoreparties.co/' + image.url
-  const thumbnail = 'https://api.nomoreparties.co/' + image.formats.thumbnail.url
+  const { duration, image, trailer, country, director, nameRU, nameEN, year, description, thumbnail, isLiked } = props.movie
 
   const timeFormat = (duration) => {
     const hours = Math.floor(duration / 60)
@@ -21,6 +19,26 @@ function MovieCard (props) {
 
   const timeline = timeFormat(duration)
 
+  const onDeleteClick = () => {
+    mainApi.deleteMovie(props.movie._id, token)
+      .then(() => {
+        const newMovies = moviesSearch.movies.map((movie) => {
+          if (movie._id === props.movie._id) {
+            movie.isLiked = false
+            movie._id = ''
+            return movie
+          } else {
+            return movie
+          }
+        })
+        updateMovies(newMovies)
+        !props.main && props.onDeleteCard(props.movie._id)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const onLikeClick = () => {
     if (!isLiked) {
       mainApi.postMovie({
@@ -29,12 +47,12 @@ function MovieCard (props) {
         nameRU,
         nameEN,
         movieId: props.movie.id,
-        trailer: trailerLink,
+        trailer,
         duration,
         year,
         description,
         thumbnail,
-        image: imgSrc
+        image
       }, token)
         .then((res) => {
           const newMovies = moviesSearch.movies.map((movie) => {
@@ -52,34 +70,19 @@ function MovieCard (props) {
           console.log(err)
         })
     } else {
-      mainApi.deleteMovie(props.movie._id, token)
-        .then(() => {
-          const newMovies = moviesSearch.movies.map((movie) => {
-            if (movie._id === props.movie._id) {
-              movie.isLiked = false
-              movie._id = ''
-              return movie
-            } else {
-              return movie
-            }
-          })
-          updateMovies(newMovies)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      onDeleteClick()
     }
   }
 
   return (
     <article className="movie-card fade fade_type_in">
-      <Link to={trailerLink} className="movie-card__link link" target="_blank" rel="noopener noreferrer">
-        <img className="movie-card__image" src={imgSrc} alt={nameRU} />
+      <Link to={trailer} className="movie-card__link link" target="_blank" rel="noopener noreferrer">
+        <img className="movie-card__image" src={image} alt={nameRU} />
       </Link>
       <div className="movie-card__description">
         <h3 className="movie-card__title">{nameRU}</h3>
         {props.main && <div onClick={onLikeClick} className={`${isLiked ? 'movie-card__like movie-card__like_active' : 'movie-card__like'}`}></div>}
-        {!props.main && <div className="movie-card__delete"></div>}
+        {!props.main && <div onClick={onDeleteClick} className="movie-card__delete"></div>}
       </div>
       <span className="movie-card__timeline">{timeline}</span>
     </article>

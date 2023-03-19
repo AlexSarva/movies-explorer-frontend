@@ -1,17 +1,14 @@
 import './SearchForm.css'
 import searchIcon from '../../images/search-icon.svg'
-import { useSearch } from '../../hook/useSearch'
 
 function SearchForm (props) {
   // const location = useLocation()
-  const { moviesSearch, toggleShortMovie, updateMovieQuery } = useSearch()
-
   const handleCheckboxChange = () => {
-    toggleShortMovie()
+    props.onToggleSearch()
   }
 
   const handleChangeSearchQuery = (e) => {
-    updateMovieQuery(e.target.value)
+    props.onSearchChange(e.target.value)
   }
 
   const handleSubmit = (e) => {
@@ -21,10 +18,10 @@ function SearchForm (props) {
 
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input onChange={handleChangeSearchQuery} className="search__input" type="text" value={moviesSearch.searchMovieQuery} placeholder="Фильм" required/>
+      <input onChange={handleChangeSearchQuery} className="search__input" type="text" value={props.searchData.searchMovieQuery} placeholder="Фильм" required/>
       <div className="search__filter">
-        <label className={`search__switch ${moviesSearch.isShortMovie && 'search__switch_active'}`}>
-          <input className="search__checkbox" type="checkbox" checked={moviesSearch.isShortMovie} onChange={handleCheckboxChange} />
+        <label className={`search__switch ${props.searchData.isShortMovie && 'search__switch_active'}`}>
+          <input className="search__checkbox" type="checkbox" checked={props.searchData.isShortMovie} onChange={handleCheckboxChange} />
           <span className="search__handle"></span>
         </label>
         <p className="search__filer-text">Короткометражки</p>

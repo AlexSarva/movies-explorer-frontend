@@ -5,7 +5,7 @@ function MovieCardList (props) {
   return (
     <section className="movies">
       {props.movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} main={props.main} />
+        <MovieCard key={index} movie={movie} main={props.main} onDeleteCard={props.onDeleteCard}/>
       )
       )}
     </section>

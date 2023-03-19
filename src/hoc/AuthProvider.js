@@ -1,11 +1,13 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import auth from '../utils/Auth'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(window.localStorage.getItem('jwt'))
   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('user')))
+  const navigate = useNavigate()
 
   const signup = useCallback(function (newUser, cb) {
     auth.register(newUser)
@@ -80,6 +82,7 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((err) => {
         console.log(err)
+        signout(() => navigate('/', { replace: true }))
       })
   }
 

@@ -12,7 +12,7 @@ import mainApi from '../../utils/MainApi'
 import { useAuth } from '../../hook/useAuth'
 
 function Movies () {
-  const { moviesSearch, updateMovies, appendMovies } = useSearch()
+  const { moviesSearch, toggleShortMovie, updateMovieQuery, updateMovies, appendMovies } = useSearch()
   const [isLoading, setIsLoading] = useState(false)
   const [offSet, setOffSet] = useState(0)
   const [isActivePaginator, setIsActivePaginator] = useState(false)
@@ -34,15 +34,10 @@ function Movies () {
     setIsLoading(true)
   }
 
-  const onSearch = () => {
-    prepareFirstSearch()
-    initMovies()
-  }
-
   const initMovies = () => {
     Promise.all([movieApi.getMovies(), mainApi.getMovies(token)])
       .then(([movies, savedMovies]) => {
-        const clearMovies = SearchEngine(movies, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0)
+        const clearMovies = SearchEngine(movies, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0, true)
         return clearMovies.map((movie) => {
           movie.isLiked = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)
           movie._id = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id) && savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)._id
@@ -66,12 +61,17 @@ function Movies () {
       })
   }
 
+  const onSearch = () => {
+    prepareFirstSearch()
+    initMovies()
+  }
+
   const paginateMovies = () => {
     setIsLoading(true)
     setIsApiError(false)
     movieApi.getMovies()
       .then((res) => {
-        return SearchEngine(res, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, addCardsCount, offSet)
+        return SearchEngine(res, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, addCardsCount, offSet, true)
       })
       .then((res) => {
         if (res.length > 0) {
@@ -108,8 +108,8 @@ function Movies () {
 
   return (
     <Fragment>
-      <SearchForm onSearch={onSearch}/>
-      {moviesSearch.movies.length > 0 && <MovieCardList main={true} movies={moviesSearch.movies} isLoading={isLoading}/>}
+      <SearchForm onSearch={onSearch} searchData={moviesSearch} onToggleSearch={toggleShortMovie} onSearchChange={updateMovieQuery}/>
+      {moviesSearch.movies.length > 0 && <MovieCardList main={true} movies={moviesSearch.movies}/>}
       {isLoading && <Preloader />}
       {isActiveNoContent && <SearchError errorText="Ничего не найдено" />}
       {isApiError && <SearchError errorText="Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз "/>}

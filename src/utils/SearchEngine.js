@@ -1,8 +1,31 @@
-export const SearchEngine = (movies, query, isShort, limit, offSet) => {
+export const SearchEngine = (movies, query, isShort, limit, offSet, main) => {
   const result = movies.filter((movie) => {
     return findMovie(movie, query, isShort)
   })
-  return result.slice(offSet, limit + offSet)
+  return result.map((movie) => {
+    if (main) {
+      return convertMovieAttributes(movie)
+    } else {
+      return movie
+    }
+  }).slice(offSet, limit + offSet)
+}
+
+const convertMovieAttributes = (movie) => {
+  const { id, duration, image, trailerLink, country, director, nameRU, nameEN, year, description } = movie
+  return {
+    id,
+    nameRU,
+    nameEN,
+    director,
+    country,
+    year,
+    duration,
+    trailer: trailerLink,
+    description,
+    image: 'https://api.nomoreparties.co/' + image.url,
+    thumbnail: 'https://api.nomoreparties.co/' + image.formats.thumbnail.url
+  }
 }
 
 const findMovie = (movie, query, isShort) => {
