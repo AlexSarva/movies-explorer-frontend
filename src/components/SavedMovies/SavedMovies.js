@@ -6,8 +6,10 @@ import { useAuth } from '../../hook/useAuth'
 import mainApi from '../../utils/MainApi'
 import SearchError from '../SearchError/SearchError'
 import { SearchEngine } from '../../utils/SearchEngine'
+import Preloader from '../Preloader/Preloader'
 
 function SavedMovies () {
+  const [isLoading, setIsLoading] = useState(false)
   const [moviesSearch, setMoviesSearch] = useState({
     searchMovieQuery: '',
     movies: [],
@@ -39,15 +41,19 @@ function SavedMovies () {
   }
 
   const initMovies = () => {
+    setIsLoading(true)
     mainApi.getMovies(token)
       .then((res) => {
         if (res.length > 0) {
           updateMovies(res)
+          setIsLoading(false)
         } else {
+          setIsLoading(false)
           setIsActiveNoContent(true)
         }
       })
       .catch((err) => {
+        setIsLoading(false)
         setIsApiError(true)
         console.log(err)
       })
@@ -72,22 +78,16 @@ function SavedMovies () {
   }, [])
 
   useEffect(() => {
-    if (moviesSearch.movies.length === 0) {
-      setIsActiveNoContent(true)
-    } else {
-      setIsActiveNoContent(false)
+    if (moviesSearch.searchMovieQuery.length === 0) {
+      initMovies()
     }
-  }, [moviesSearch.movies.length])
-
-  useEffect(() => {
-    moviesSearch.searchMovieQuery.length === 0 && initMovies()
-  }, [moviesSearch.searchMovieQuery.length])
+  }, [moviesSearch.searchMovieQuery])
 
   return (
     <Fragment>
       <SearchForm onSearch={onSearch} searchData={moviesSearch} onToggleSearch={toggleShortMovie} onSearchChange={updateMovieQuery}/>
       {moviesSearch.movies.length > 0 && <MovieCardList main={false} movies={moviesSearch.movies} onDeleteCard={onDeleteCard}/>}
-      {/* <span className="movies-span"></span> */}
+      {isLoading && <Preloader />}
       {isActiveNoContent && <SearchError errorText="Ничего не найдено" />}
       {isApiError && <SearchError errorText="Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз "/>}
     </Fragment>

@@ -20,6 +20,7 @@ function Movies () {
   const [isApiError, setIsApiError] = useState(false)
   const [initCardsCount, setInitCardsCount] = useState(4)
   const [addCardsCount, setAddCardsCount] = useState(2)
+  const { innerWidth: initialWidth } = window
   const { height, width } = useWindowDimensions()
   const { token } = useAuth()
 
@@ -28,6 +29,7 @@ function Movies () {
   }
 
   const prepareFirstSearch = () => {
+    calibrateCardsCount(initialWidth)
     setIsApiError(false)
     setIsActiveNoContent(false)
     updateMovies([])
@@ -88,28 +90,32 @@ function Movies () {
       })
   }
 
-  useEffect(() => {
+  const calibrateCardsCount = (initWidth) => {
     switch (true) {
-      case width >= 1280:
+      case initWidth >= 1280:
         setInitCardsCount(12)
         setAddCardsCount(4)
         break
-      case width >= 768 && width < 1280:
+      case initWidth >= 768 && initWidth < 1280:
         setInitCardsCount(8)
         setAddCardsCount(2)
         break
-      case width < 768:
+      case initWidth < 768:
         setInitCardsCount(5)
         setAddCardsCount(2)
         break
       default:
     }
+  }
+
+  useEffect(() => {
+    calibrateCardsCount(width)
   }, [height, width])
 
   return (
     <Fragment>
       <SearchForm onSearch={onSearch} searchData={moviesSearch} onToggleSearch={toggleShortMovie} onSearchChange={updateMovieQuery}/>
-      {moviesSearch.movies.length > 0 && <MovieCardList main={true} movies={moviesSearch.movies}/>}
+      {moviesSearch.movies.length > 0 && <MovieCardList main={true} movies={moviesSearch.movies} />}
       {isLoading && <Preloader />}
       {isActiveNoContent && <SearchError errorText="Ничего не найдено" />}
       {isApiError && <SearchError errorText="Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз "/>}
