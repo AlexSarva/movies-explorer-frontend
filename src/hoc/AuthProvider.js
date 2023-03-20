@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     cb()
   }, [])
 
-  const patchUser = useCallback(function (userInfo) {
+  const patchUser = useCallback(function (userInfo, cb, errorCb) {
     auth.patchUserInfo(userInfo, token)
       .then((res) => {
         if (res.email && res.name) {
@@ -68,8 +68,11 @@ export const AuthProvider = ({ children }) => {
           setUser(res)
         }
       })
+      .then(() => {
+        cb()
+      })
       .catch((err) => {
-        console.log(err)
+        errorCb(err)
       })
   }, [])
 
