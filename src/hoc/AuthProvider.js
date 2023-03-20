@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('user')))
   const navigate = useNavigate()
 
-  const signup = useCallback(function (newUser, cb) {
+  const signup = useCallback(function (newUser, cb, errorCb) {
     auth.register(newUser)
       .then((res) => {
         if (res.email && res.name) {
@@ -26,16 +26,16 @@ export const AuthProvider = ({ children }) => {
               setToken(res.token)
             }
           })
-      })
-      .then(() => {
-        cb()
+          .then(() => {
+            cb()
+          })
       })
       .catch((err) => {
-        console.log(err)
+        errorCb(err)
       })
   }, [])
 
-  const signin = useCallback(function (newUser, cb) {
+  const signin = useCallback(function (newUser, cb, errorCb) {
     auth.authorize(newUser)
       .then((res) => {
         if (res.token) {
@@ -47,13 +47,14 @@ export const AuthProvider = ({ children }) => {
         cb()
       })
       .catch((err) => {
-        console.log(err)
+        errorCb(err)
       })
   }, [])
 
   const signout = useCallback(function (cb) {
     window.localStorage.removeItem('jwt')
     window.localStorage.removeItem('user')
+    window.localStorage.removeItem('movies')
     setUser(null)
     setToken(null)
     cb()

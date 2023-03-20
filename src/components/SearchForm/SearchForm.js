@@ -1,14 +1,21 @@
 import './SearchForm.css'
 import searchIcon from '../../images/search-icon.svg'
+import searchIconBlack from '../../images/search-icon-black.svg'
+import useInput from '../../hook/useInput'
 
 function SearchForm (props) {
   // const location = useLocation()
+
+  const query = useInput(props.searchData.searchMovieQuery, { isEmpty: true, minLength: 1 })
+
   const handleCheckboxChange = () => {
     props.onToggleSearch()
   }
 
   const handleChangeSearchQuery = (e) => {
+    query.onChange(e.target.value)
     props.onSearchChange(e.target.value)
+    console.log(query.isDirty)
   }
 
   const handleSubmit = (e) => {
@@ -18,7 +25,8 @@ function SearchForm (props) {
 
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input onChange={handleChangeSearchQuery} className="search__input" type="text" value={props.searchData.searchMovieQuery} placeholder="Фильм" required/>
+      <input onChange={e => handleChangeSearchQuery(e)} className="search__input" type="text" value={props.searchData.searchMovieQuery} placeholder="Фильм" />
+      {(query.isDirty && query.minLengthError) && <span className="search__input-error">Нужно ввести ключевое слово</span>}
       <div className="search__filter">
         <label className={`search__switch ${props.searchData.isShortMovie && 'search__switch_active'}`}>
           <input className="search__checkbox" type="checkbox" checked={props.searchData.isShortMovie} onChange={handleCheckboxChange} />
@@ -26,8 +34,8 @@ function SearchForm (props) {
         </label>
         <p className="search__filer-text">Короткометражки</p>
       </div>
-      <button className="search__button" type="submit">
-        <img className="search__icon" src={searchIcon} alt="search" />
+      <button disabled={!query.queryInputValid} className="search__button" type="submit">
+        {query.queryInputValid ? <img className="search__icon" src={searchIcon} alt="search" /> : <img className="search__icon" src={searchIconBlack} alt="search" />}
       </button>
     </form>
   )

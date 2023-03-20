@@ -4,54 +4,60 @@ import AuthForm from '../AuthForm'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useAuth } from '../../../hook/useAuth'
+import useInput from '../../../hook/useInput'
 
 function Register () {
   const navigate = useNavigate()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [isBadRegister, setIsBadRegister] = useState(false)
+  const [badRegisterReason, setBadRegisterReason] = useState('')
+  const email = useInput('', { emailCheck: true })
+  const password = useInput('', { passwordCheck: true })
+  const name = useInput('', { usernameCheck: true })
   const { signup } = useAuth()
-
-  const handleChangeName = (e) => {
-    setName(e.target.value)
-  }
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    signup({ name, email, password }, () => navigate('/movies', { replace: true }))
+    signup({ name: name.value, email: email.value, password: password.value }, () => {
+      setBadRegisterReason('')
+      setIsBadRegister(false)
+      navigate('/movies', { replace: true })
+    }, (errValue) => {
+      if (errValue.status === 409) {
+        setBadRegisterReason('Пользователь с таким email уже существует')
+        setIsBadRegister(true)
+      } else {
+        setBadRegisterReason('Что-то пошло не так, попробуйте еще раз...')
+        setIsBadRegister(true)
+      }
+    })
   }
 
   return (
     <AuthForm title="Добро пожаловать!">
       <form onSubmit={handleSubmit} className="auth__form auth__form_type_register">
         <div className="auth__input-container">
+          {(name.isDirty && name.usernameError) && <span className="auth__input-error auth__input-error_active">Неправильно введено Имя</span>}
           <label className="auth__label" htmlFor="username">Имя</label>
           <input id="username" name="username" type="text" className="auth__input"
-                 value={name} onChange={handleChangeName}
-                 placeholder="" required minLength="6" maxLength="40"/>
+                 value={name.value} onChange={e => name.onChange(e.target.value)}
+                 placeholder=""/>
         </div>
         <div className="auth__input-container">
+          {(email.isDirty && email.emailError) && <span className="auth__input-error auth__input-error_active">Неверно введена почта</span>}
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input id="email" name="email" type="email" className="auth__input auth__input_type_email"
-                 value={email} onChange={handleChangeEmail}
-                 placeholder="" required minLength="6" maxLength="40"/>
+                 value={email.value} onChange={e => email.onChange(e.target.value)}
+                 placeholder="" />
         </div>
         <div className="auth__input-container">
+          {(password.isDirty && password.passwordError) && <span className="auth__input-error auth__input-error_active">Должен быть мин. 8 символов, содержать заглавные буквы и цифры</span>}
           <label className="auth__label" htmlFor="password">Пароль</label>
           <input id="password" name="password" type="password" className="auth__input"
-                 value={password} onChange={handleChangePassword}
-                 placeholder="" required minLength="6" maxLength="40"/>
+                 value={password.value} onChange={e => password.onChange(e.target.value)}
+                 placeholder=""/>
         </div>
-        <span className="auth__input-error">Что-то пошло не так...</span>
-        <button type="submit" className="auth__button link">Зарегистрироваться</button>
+        {isBadRegister && <span className="auth__submit-error">{badRegisterReason}</span>}
+        <button disabled={email.emailError || password.passwordError || name.usernameError} type="submit" className="auth__button auth__button_register link">Зарегистрироваться</button>
         <div className="auth__alternate">
           <span>Уже зарегистрированы? </span>
           <Link to="/signin" className="auth__link link link_text">Войти</Link>

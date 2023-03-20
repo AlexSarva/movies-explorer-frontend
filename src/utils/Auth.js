@@ -12,7 +12,10 @@ class Auth {
       return res.json()
     }
     // eslint-disable-next-line prefer-promise-reject-errors
-    return Promise.reject(`Ошибка ${res.status}`)
+    return Promise.reject({
+      status: res.status,
+      statusText: res.statusText
+    })
   }
 
   register ({ name, email, password }) {
