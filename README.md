@@ -39,3 +39,5 @@
 ## Фронтенд
 
 Фронтенд можно посмотреть [тут](https://movies.sarva.nomoredomains.rocks)
+
+PR [тут](https://github.com/AlexSarva/movies-explorer-frontend/pull/2)
