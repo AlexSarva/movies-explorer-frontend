@@ -15,6 +15,7 @@ function SavedMovies () {
     movies: [],
     isShortMovie: false
   })
+  const [allMovies, setAllMovies] = useState([])
   const [isActiveNoContent, setIsActiveNoContent] = useState(false)
   const [isApiError, setIsApiError] = useState(false)
   const { token } = useAuth()
@@ -33,10 +34,10 @@ function SavedMovies () {
     })
   }
 
-  const updateMovies = (movies) => {
+  const updateMovies = (newMovies) => {
     setMoviesSearch({
       ...moviesSearch,
-      movies
+      movies: newMovies
     })
   }
 
@@ -46,6 +47,7 @@ function SavedMovies () {
       .then((res) => {
         if (res.length > 0) {
           updateMovies(res)
+          setAllMovies(res)
           setIsLoading(false)
         } else {
           setIsLoading(false)
@@ -60,8 +62,8 @@ function SavedMovies () {
   }
 
   const onSearch = () => {
-    const { movies, isShortMovie, searchMovieQuery } = moviesSearch
-    const res = SearchEngine(movies, searchMovieQuery, isShortMovie, movies.length, 0, false)
+    const { isShortMovie, searchMovieQuery } = moviesSearch
+    const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, allMovies.length, 0, false)
     updateMovies(res)
   }
 
@@ -71,17 +73,17 @@ function SavedMovies () {
 
   useEffect(() => {
     initMovies()
-    setMoviesSearch({
-      ...moviesSearch,
-      isShortMovie: false
-    })
   }, [])
 
+  // useEffect(() => {
+  //   if (moviesSearch.searchMovieQuery.length === 0) {
+  //     initMovies()
+  //   }
+  // }, [moviesSearch.searchMovieQuery])
+
   useEffect(() => {
-    if (moviesSearch.searchMovieQuery.length === 0) {
-      initMovies()
-    }
-  }, [moviesSearch.searchMovieQuery])
+    onSearch()
+  }, [moviesSearch.isShortMovie])
 
   return (
     <Fragment>

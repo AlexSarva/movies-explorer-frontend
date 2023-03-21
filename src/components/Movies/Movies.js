@@ -13,6 +13,7 @@ import { useAuth } from '../../hook/useAuth'
 
 function Movies () {
   const { moviesSearch, toggleShortMovie, updateMovieQuery, updateMovies, appendMovies } = useSearch()
+  const [allMovies, setAllMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [offSet, setOffSet] = useState(0)
   const [isActivePaginator, setIsActivePaginator] = useState(false)
@@ -20,7 +21,6 @@ function Movies () {
   const [isApiError, setIsApiError] = useState(false)
   const [initCardsCount, setInitCardsCount] = useState(4)
   const [addCardsCount, setAddCardsCount] = useState(2)
-  const { innerWidth: initialWidth } = window
   const { height, width } = useWindowDimensions()
   const { token } = useAuth()
 
@@ -28,19 +28,13 @@ function Movies () {
     moviesLength < limit ? setIsActivePaginator(false) : setIsActivePaginator(true)
   }
 
-  const prepareFirstSearch = () => {
-    calibrateCardsCount(initialWidth)
+  const firstMovieLoad = () => {
+    setIsLoading(true)
     setIsApiError(false)
     setIsActiveNoContent(false)
-    updateMovies([])
-    setIsLoading(true)
-  }
-
-  const initMovies = () => {
     Promise.all([movieApi.getMovies(), mainApi.getMovies(token)])
       .then(([movies, savedMovies]) => {
-        const clearMovies = SearchEngine(movies, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, initCardsCount, 0, true)
-        return clearMovies.map((movie) => {
+        return movies.map((movie) => {
           movie.isLiked = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)
           movie._id = !!savedMovies.find((savedMovie) => savedMovie.movieId === movie.id) && savedMovies.find((savedMovie) => savedMovie.movieId === movie.id)._id
           return movie
@@ -48,46 +42,42 @@ function Movies () {
       })
       .then((res) => {
         if (res.length > 0) {
-          updateMovies(res)
-          setOffSet(offSet + res.length)
+          setAllMovies(res)
         } else {
           setIsActiveNoContent(true)
         }
-        checkPagination(res.length, initCardsCount)
         setIsLoading(false)
       })
       .catch((err) => {
         setIsApiError(true)
-        setIsLoading(false)
         console.log(err)
       })
   }
 
   const onSearch = () => {
-    prepareFirstSearch()
-    initMovies()
+    setOffSet(0)
+    const { isShortMovie, searchMovieQuery } = moviesSearch
+    const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, initCardsCount, 0, true)
+    if (res.length > 0) {
+      updateMovies(res)
+      setOffSet(offSet + res.length)
+    } else {
+      setIsActiveNoContent(true)
+    }
+    checkPagination(res.length, initCardsCount)
+    setIsLoading(false)
   }
 
   const paginateMovies = () => {
     setIsLoading(true)
-    setIsApiError(false)
-    movieApi.getMovies()
-      .then((res) => {
-        return SearchEngine(res, moviesSearch.searchMovieQuery, moviesSearch.isShortMovie, addCardsCount, offSet, true)
-      })
-      .then((res) => {
-        if (res.length > 0) {
-          appendMovies(res)
-          setOffSet(offSet + res.length)
-        }
-        checkPagination(res.length, addCardsCount)
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        setIsApiError(true)
-        setIsLoading(false)
-        console.log(err)
-      })
+    const { isShortMovie, searchMovieQuery } = moviesSearch
+    const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, addCardsCount, offSet, true)
+    if (res.length > 0) {
+      appendMovies(res)
+      setOffSet(offSet + res.length)
+    }
+    checkPagination(res.length, addCardsCount)
+    setIsLoading(false)
   }
 
   const calibrateCardsCount = (initWidth) => {
@@ -111,6 +101,14 @@ function Movies () {
   useEffect(() => {
     calibrateCardsCount(width)
   }, [height, width])
+
+  useEffect(() => {
+    onSearch()
+  }, [moviesSearch.isShortMovie])
+
+  useEffect(() => {
+    firstMovieLoad()
+  }, [])
 
   return (
     <Fragment>

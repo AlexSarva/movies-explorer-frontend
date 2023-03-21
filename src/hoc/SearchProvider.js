@@ -23,10 +23,10 @@ export const SearchProvider = ({ children }) => {
     })
   }
 
-  const updateMovies = (movies) => {
+  const updateMovies = (newMovies) => {
     setMoviesSearch({
       ...moviesSearch,
-      movies
+      movies: newMovies
     })
   }
 

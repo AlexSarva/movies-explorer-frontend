@@ -15,7 +15,6 @@ function SearchForm (props) {
   const handleChangeSearchQuery = (e) => {
     query.onChange(e.target.value)
     props.onSearchChange(e.target.value)
-    console.log(query.isDirty)
   }
 
   const handleSubmit = (e) => {
