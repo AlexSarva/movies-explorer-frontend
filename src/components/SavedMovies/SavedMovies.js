@@ -49,6 +49,7 @@ function SavedMovies () {
           updateMovies(res)
           setAllMovies(res)
           setIsLoading(false)
+          setIsActiveNoContent(false)
         } else {
           setIsLoading(false)
           setIsActiveNoContent(true)
@@ -64,7 +65,13 @@ function SavedMovies () {
   const onSearch = () => {
     const { isShortMovie, searchMovieQuery } = moviesSearch
     const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, allMovies.length, 0, false)
-    updateMovies(res)
+    if (res.length > 0) {
+      updateMovies(res)
+      setIsActiveNoContent(false)
+    } else {
+      updateMovies([])
+      setIsActiveNoContent(true)
+    }
   }
 
   const onDeleteCard = (id) => {
@@ -74,12 +81,6 @@ function SavedMovies () {
   useEffect(() => {
     initMovies()
   }, [])
-
-  // useEffect(() => {
-  //   if (moviesSearch.searchMovieQuery.length === 0) {
-  //     initMovies()
-  //   }
-  // }, [moviesSearch.searchMovieQuery])
 
   useEffect(() => {
     onSearch()
