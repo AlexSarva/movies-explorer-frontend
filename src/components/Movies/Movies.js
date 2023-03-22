@@ -14,6 +14,7 @@ import { useAuth } from '../../hook/useAuth'
 function Movies () {
   const { moviesSearch, toggleShortMovie, updateMovieQuery, updateMovies, appendMovies } = useSearch()
   const [allMovies, setAllMovies] = useState([])
+  const [isDataReady, setIsDataReady] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [offSet, setOffSet] = useState(0)
   const [isActivePaginator, setIsActivePaginator] = useState(false)
@@ -31,7 +32,7 @@ function Movies () {
   const firstMovieLoad = () => {
     setIsLoading(true)
     setIsApiError(false)
-    setIsActiveNoContent(false)
+    setIsDataReady(false)
     Promise.all([movieApi.getMovies(), mainApi.getMovies(token)])
       .then(([movies, savedMovies]) => {
         return movies.map((movie) => {
@@ -43,8 +44,7 @@ function Movies () {
       .then((res) => {
         if (res.length > 0) {
           setAllMovies(res)
-        } else {
-          setIsActiveNoContent(true)
+          setIsDataReady(true)
         }
         setIsLoading(false)
       })
@@ -55,17 +55,21 @@ function Movies () {
   }
 
   const onSearch = () => {
-    setOffSet(0)
     const { isShortMovie, searchMovieQuery } = moviesSearch
-    const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, initCardsCount, 0, true)
-    if (res.length > 0) {
-      updateMovies(res)
-      setOffSet(offSet + res.length)
-    } else {
-      setIsActiveNoContent(true)
+    if (searchMovieQuery !== '') {
+      setOffSet(0)
+      const res = SearchEngine(allMovies, searchMovieQuery, isShortMovie, initCardsCount, 0, true)
+      if (res.length > 0) {
+        setIsActiveNoContent(false)
+        updateMovies(res)
+        setOffSet(offSet + res.length)
+      } else {
+        updateMovies([])
+        setIsActiveNoContent(true)
+      }
+      checkPagination(res.length, initCardsCount)
+      setIsLoading(false)
     }
-    checkPagination(res.length, initCardsCount)
-    setIsLoading(false)
   }
 
   const paginateMovies = () => {
@@ -103,12 +107,14 @@ function Movies () {
   }, [height, width])
 
   useEffect(() => {
-    onSearch()
-  }, [moviesSearch.isShortMovie])
-
-  useEffect(() => {
     firstMovieLoad()
   }, [])
+
+  useEffect(() => {
+    if (isDataReady) {
+      onSearch()
+    }
+  }, [moviesSearch.isShortMovie, isDataReady])
 
   return (
     <Fragment>

@@ -16,6 +16,7 @@ function SavedMovies () {
     isShortMovie: false
   })
   const [allMovies, setAllMovies] = useState([])
+  const [isDataReady, setIsDataReady] = useState(false)
   const [isActiveNoContent, setIsActiveNoContent] = useState(false)
   const [isApiError, setIsApiError] = useState(false)
   const { token } = useAuth()
@@ -43,11 +44,13 @@ function SavedMovies () {
 
   const initMovies = () => {
     setIsLoading(true)
+    setIsDataReady(false)
     mainApi.getMovies(token)
       .then((res) => {
         if (res.length > 0) {
           updateMovies(res)
           setAllMovies(res)
+          setIsDataReady(true)
           setIsLoading(false)
           setIsActiveNoContent(false)
         } else {
@@ -83,8 +86,18 @@ function SavedMovies () {
   }, [])
 
   useEffect(() => {
-    onSearch()
-  }, [moviesSearch.isShortMovie])
+    if (moviesSearch.movies.length === 0) {
+      setIsActiveNoContent(true)
+    } else {
+      setIsActiveNoContent(false)
+    }
+  }, [moviesSearch.movies])
+
+  useEffect(() => {
+    if (isDataReady) {
+      onSearch()
+    }
+  }, [moviesSearch.isShortMovie, isDataReady])
 
   return (
     <Fragment>
