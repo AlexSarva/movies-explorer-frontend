@@ -15,6 +15,21 @@ function Register () {
   const name = useInput('', { usernameCheck: true })
   const { signup } = useAuth()
 
+  const handleEmailChange = (e) => {
+    setIsBadRegister(false)
+    email.onChange(e.target.value)
+  }
+
+  const handlePasswordChange = (e) => {
+    setIsBadRegister(false)
+    password.onChange(e.target.value)
+  }
+
+  const handleNameChange = (e) => {
+    setIsBadRegister(false)
+    name.onChange(e.target.value)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     signup({ name: name.value, email: email.value, password: password.value }, () => {
@@ -39,21 +54,21 @@ function Register () {
           {(name.isDirty && name.usernameError) && <span className="auth__input-error auth__input-error_active">Неправильно введено Имя</span>}
           <label className="auth__label" htmlFor="username">Имя</label>
           <input id="username" name="username" type="text" className="auth__input"
-                 value={name.value} onChange={e => name.onChange(e.target.value)}
+                 value={name.value} onChange={handleNameChange}
                  placeholder=""/>
         </div>
         <div className="auth__input-container">
           {(email.isDirty && email.emailError) && <span className="auth__input-error auth__input-error_active">Неверно введена почта</span>}
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input id="email" name="email" type="email" className="auth__input auth__input_type_email"
-                 value={email.value} onChange={e => email.onChange(e.target.value)}
+                 value={email.value} onChange={handleEmailChange}
                  placeholder="" />
         </div>
         <div className="auth__input-container">
           {(password.isDirty && password.passwordError) && <span className="auth__input-error auth__input-error_active">Должен быть мин. 8 символов, содержать заглавные буквы и цифры</span>}
           <label className="auth__label" htmlFor="password">Пароль</label>
           <input id="password" name="password" type="password" className="auth__input"
-                 value={password.value} onChange={e => password.onChange(e.target.value)}
+                 value={password.value} onChange={handlePasswordChange}
                  placeholder=""/>
         </div>
         {isBadRegister && <span className="auth__submit-error">{badRegisterReason}</span>}

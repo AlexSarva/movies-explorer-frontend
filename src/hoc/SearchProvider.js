@@ -9,6 +9,14 @@ export const SearchProvider = ({ children }) => {
     isShortMovie: false
   })
 
+  const clearMoviesSearch = () => {
+    setMoviesSearch({
+      searchMovieQuery: '',
+      movies: [],
+      isShortMovie: false
+    })
+  }
+
   const toggleShortMovie = () => {
     setMoviesSearch({
       ...moviesSearch,
@@ -46,9 +54,10 @@ export const SearchProvider = ({ children }) => {
     toggleShortMovie,
     updateMovieQuery,
     updateMovies,
-    appendMovies
+    appendMovies,
+    clearMoviesSearch
   }),
-  [moviesSearch, toggleShortMovie,
+  [moviesSearch, toggleShortMovie, clearMoviesSearch,
     updateMovieQuery, updateMovies, appendMovies]
   )
 

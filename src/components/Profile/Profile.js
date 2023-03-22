@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hook/useAuth'
 import useInput from '../../hook/useInput'
+import { useSearch } from '../../hook/useSearch'
 
 function Profile () {
   const [username, setUsername] = useState('')
@@ -16,15 +17,18 @@ function Profile () {
   const [badResponseReason, setBadResponseReason] = useState('')
   const emailCheck = useInput(user.email, { emailCheck: true })
   const nameCheck = useInput(user.name, { usernameCheck: true })
+  const { clearMoviesSearch } = useSearch()
 
   const handleChangeUsername = (e) => {
     setUsername(e.target.value)
     nameCheck.onChange(e.target.value)
+    setIsBadResponse(false)
   }
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value)
     emailCheck.onChange(e.target.value)
+    setIsBadResponse(false)
   }
 
   const handleSubmit = (e) => {
@@ -45,6 +49,7 @@ function Profile () {
 
   const handleLogOut = () => {
     signout(() => {
+      clearMoviesSearch()
       navigate('/', { replace: true })
     })
   }
