@@ -61,20 +61,25 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const patchUser = useCallback(function (userInfo, cb, errorCb) {
-    auth.patchUserInfo(userInfo, token)
-      .then((res) => {
-        if (res.email && res.name) {
-          window.localStorage.setItem('user', JSON.stringify(res))
-          setUser(res)
-        }
-      })
-      .then(() => {
-        cb()
-      })
-      .catch((err) => {
-        errorCb(err)
-      })
-  }, [])
+    const currentToken = token || window.localStorage.getItem('jwt')
+    if (currentToken) {
+      auth.patchUserInfo(userInfo, token)
+        .then((res) => {
+          if (res.email && res.name) {
+            window.localStorage.setItem('user', JSON.stringify(res))
+            setUser(res)
+          }
+        })
+        .then(() => {
+          cb()
+        })
+        .catch((err) => {
+          errorCb(err)
+        })
+    } else {
+      console.log('no token found')
+    }
+  }, [token])
 
   const getUserInfo = () => {
     auth.userInfo(token)
