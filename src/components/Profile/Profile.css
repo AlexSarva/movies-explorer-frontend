@@ -31,16 +31,29 @@
     position: relative;
 }
 
-.profile__submit-error {
+.profile__submit_text {
+    width: 100%;
     position: absolute;
-    top: 260px;
-    left: 40px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
+    text-align: center;
+    justify-content: center;
+}
+
+.profile__submit_text_error {
     color: #EE3465;
 }
+
+.profile__submit_text_success {
+    color: #3DDC84;
+}
+
+
 
 .profile__input-container {
     width: 100%;
@@ -174,9 +187,8 @@
         margin-top: 365px;
     }
 
-    .profile__submit-error {
-        left: 20px;
-        top: 425px;
+    .profile__submit_text {
+        top: 75%;
         font-weight: 300;
         font-size: 9px;
     }

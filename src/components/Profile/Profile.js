@@ -13,8 +13,11 @@ function Profile () {
   const { user, signout, patchUser } = useAuth()
   const navigate = useNavigate()
   const [isSameValues, setIsSameValues] = useState(false)
-  const [isBadResponse, setIsBadResponse] = useState(false)
-  const [badResponseReason, setBadResponseReason] = useState('')
+  const [response, setResponse] = useState({
+    show: false,
+    success: false,
+    message: ''
+  })
   const emailCheck = useInput(user.email, { emailCheck: true })
   const nameCheck = useInput(user.name, { usernameCheck: true })
   const { clearMoviesSearch } = useSearch()
@@ -22,27 +25,46 @@ function Profile () {
   const handleChangeUsername = (e) => {
     setUsername(e.target.value)
     nameCheck.onChange(e.target.value)
-    setIsBadResponse(false)
+    setResponse({
+      ...response,
+      show: false
+    })
   }
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value)
     emailCheck.onChange(e.target.value)
-    setIsBadResponse(false)
+    setResponse({
+      ...response,
+      show: false
+    })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     patchUser({ name: username, email }, () => {
-      setBadResponseReason('')
-      setIsBadResponse(false)
+      setResponse({
+        ...response,
+        show: true,
+        success: true,
+        message: 'Пользователь успешно обновлен'
+      })
+      console.log(response)
     }, (errValue) => {
       if (errValue.status === 409) {
-        setBadResponseReason('Пользователь с таким email уже существует')
-        setIsBadResponse(true)
+        setResponse({
+          ...response,
+          show: true,
+          success: false,
+          message: 'Пользователь с таким email уже существует'
+        })
       } else {
-        setBadResponseReason('Что-то пошло не так, попробуйте еще раз...')
-        setIsBadResponse(true)
+        setResponse({
+          ...response,
+          show: true,
+          success: false,
+          message: 'Что-то пошло не так, попробуйте еще раз...'
+        })
       }
     })
   }
@@ -67,6 +89,21 @@ function Profile () {
     setEmail(user.email)
   }, [])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (response.success === true) {
+        setResponse({
+          ...response,
+          show: false
+        })
+      }
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [response.success])
+
   return (
     <Fragment>
       <Header />
@@ -85,7 +122,7 @@ function Profile () {
             <input id="email" name="email" type="email" className="profile__input" value={email} onChange={handleChangeEmail}
                    placeholder="" />
           </div>
-          {isBadResponse && <span className="profile__submit-error">{badResponseReason}</span>}
+          {response.show && <span className={`profile__submit_text ${response.success ? 'profile__submit_text_success' : 'profile__submit_text_error'}`}>{response.message}</span>}
           <button disabled={emailCheck.emailError || nameCheck.usernameError || isSameValues} type="submit" className="profile__submit link link_text">Редактировать</button>
           <button type="button" onClick={handleLogOut} className="profile__logout link link_text">Выйти из аккаунта</button>
         </form>
