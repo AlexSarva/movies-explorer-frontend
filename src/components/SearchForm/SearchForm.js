@@ -1,45 +1,38 @@
 import './SearchForm.css'
 import searchIcon from '../../images/search-icon.svg'
-import { useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import searchIconBlack from '../../images/search-icon-black.svg'
+import useInput from '../../hook/useInput'
 
-function SearchForm () {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const search = useRef(null)
-
-  const [isCheckboxActive, setIsCheckboxActive] = useState(true)
+function SearchForm (props) {
+  const query = useInput(props.searchData.searchMovieQuery, { isEmpty: true, minLength: 1 })
 
   const handleCheckboxChange = () => {
-    setIsCheckboxActive(!isCheckboxActive)
+    props.onToggleSearch()
   }
 
-  const clearSearch = () => {
-    search.current.value = ''
+  const handleChangeSearchQuery = (e) => {
+    query.onChange(e.target.value)
+    props.onSearchChange(e.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    clearSearch()
-    navigate(location.pathname)
+    props.onSearch()
   }
-
-  useEffect(() => {
-    clearSearch()
-  }, [])
 
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input ref={search} className="search__input" type="text" placeholder="Фильм" required/>
+      <input onChange={e => handleChangeSearchQuery(e)} className="search__input" type="text" value={props.searchData.searchMovieQuery} placeholder="Фильм" />
+      {(query.isDirty && query.minLengthError) && <span className="search__input-error">Нужно ввести ключевое слово</span>}
       <div className="search__filter">
-        <label className={`search__switch ${isCheckboxActive && 'search__switch_active'}`}>
-          <input className="search__checkbox" type="checkbox" checked={isCheckboxActive} onChange={handleCheckboxChange} />
+        <label className={`search__switch ${props.searchData.isShortMovie && 'search__switch_active'}`}>
+          <input className="search__checkbox" type="checkbox" checked={props.searchData.isShortMovie} onChange={handleCheckboxChange} disabled={props.loading}/>
           <span className="search__handle"></span>
         </label>
         <p className="search__filer-text">Короткометражки</p>
       </div>
-      <button className="search__button" type="submit">
-        <img className="search__icon" src={searchIcon} alt="search" />
+      <button disabled={!query.queryInputValid || props.loading} className="search__button" type="submit">
+        {query.queryInputValid ? <img className="search__icon" src={searchIcon} alt="search" /> : <img className="search__icon" src={searchIconBlack} alt="search" />}
       </button>
     </form>
   )
