@@ -8,6 +8,7 @@ import useInput from '../../../hook/useInput'
 
 function Register () {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [isBadRegister, setIsBadRegister] = useState(false)
   const [badRegisterReason, setBadRegisterReason] = useState('')
   const email = useInput('', { emailCheck: true })
@@ -31,10 +32,12 @@ function Register () {
   }
 
   const handleSubmit = (e) => {
+    setIsLoading(true)
     e.preventDefault()
     signup({ name: name.value, email: email.value, password: password.value }, () => {
       setBadRegisterReason('')
       setIsBadRegister(false)
+      setIsLoading(false)
       navigate('/movies', { replace: true })
     }, (errValue) => {
       if (errValue.status === 409) {
@@ -44,6 +47,7 @@ function Register () {
         setBadRegisterReason('Что-то пошло не так, попробуйте еще раз...')
         setIsBadRegister(true)
       }
+      setIsLoading(false)
     })
   }
 
@@ -55,24 +59,24 @@ function Register () {
           <label className="auth__label" htmlFor="username">Имя</label>
           <input id="username" name="username" type="text" className="auth__input"
                  value={name.value} onChange={handleNameChange}
-                 placeholder=""/>
+                 placeholder="" disabled={isLoading}/>
         </div>
         <div className="auth__input-container">
           {(email.isDirty && email.emailError) && <span className="auth__input-error auth__input-error_active">Неверно введена почта</span>}
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input id="email" name="email" type="email" className="auth__input auth__input_type_email"
                  value={email.value} onChange={handleEmailChange}
-                 placeholder="" />
+                 placeholder="" disabled={isLoading}/>
         </div>
         <div className="auth__input-container">
           {(password.isDirty && password.passwordError) && <span className="auth__input-error auth__input-error_active">Должен быть мин. 8 символов, содержать заглавные буквы и цифры</span>}
           <label className="auth__label" htmlFor="password">Пароль</label>
           <input id="password" name="password" type="password" className="auth__input"
                  value={password.value} onChange={handlePasswordChange}
-                 placeholder=""/>
+                 placeholder="" disabled={isLoading}/>
         </div>
         {isBadRegister && <span className="auth__submit-error">{badRegisterReason}</span>}
-        <button disabled={email.emailError || password.passwordError || name.usernameError} type="submit" className="auth__button auth__button_register link">Зарегистрироваться</button>
+        <button disabled={email.emailError || password.passwordError || name.usernameError || isLoading} type="submit" className="auth__button auth__button_register link">Зарегистрироваться</button>
         <div className="auth__alternate">
           <span>Уже зарегистрированы? </span>
           <Link to="/signin" className="auth__link link link_text">Войти</Link>

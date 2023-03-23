@@ -8,6 +8,7 @@ import useInput from '../../hook/useInput'
 import { useSearch } from '../../hook/useSearch'
 
 function Profile () {
+  const [isLoading, setIsLoading] = useState(false)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const { user, signout, patchUser } = useAuth()
@@ -41,6 +42,7 @@ function Profile () {
   }
 
   const handleSubmit = (e) => {
+    setIsLoading(true)
     e.preventDefault()
     patchUser({ name: username, email }, () => {
       setResponse({
@@ -49,7 +51,7 @@ function Profile () {
         success: true,
         message: 'Пользователь успешно обновлен'
       })
-      console.log(response)
+      setIsLoading(false)
     }, (errValue) => {
       if (errValue.status === 409) {
         setResponse({
@@ -66,6 +68,7 @@ function Profile () {
           message: 'Что-то пошло не так, попробуйте еще раз...'
         })
       }
+      setIsLoading(false)
     })
   }
 
@@ -114,16 +117,16 @@ function Profile () {
             {(nameCheck.usernameError) && <span className="profile__input-error">Неправильно введено Имя</span>}
             <label className="profile__label" htmlFor="username">Имя</label>
             <input id="username" name="username" type="text" className="profile__input" value={username} onChange={handleChangeUsername}
-                   placeholder="" />
+                   placeholder="" disabled={isLoading}/>
           </div>
           <div className="profile__input-container">
             {(emailCheck.emailError) && <span className="profile__input-error">Неправильно введено email</span>}
             <label className="profile__label" htmlFor="email">E-mail</label>
             <input id="email" name="email" type="email" className="profile__input" value={email} onChange={handleChangeEmail}
-                   placeholder="" />
+                   placeholder="" disabled={isLoading}/>
           </div>
           {response.show && <span className={`profile__submit_text ${response.success ? 'profile__submit_text_success' : 'profile__submit_text_error'}`}>{response.message}</span>}
-          <button disabled={emailCheck.emailError || nameCheck.usernameError || isSameValues} type="submit" className="profile__submit link link_text">Редактировать</button>
+          <button disabled={emailCheck.emailError || nameCheck.usernameError || isSameValues || isLoading} type="submit" className="profile__submit link link_text">Редактировать</button>
           <button type="button" onClick={handleLogOut} className="profile__logout link link_text">Выйти из аккаунта</button>
         </form>
       </section>

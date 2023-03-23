@@ -118,7 +118,7 @@ function Movies () {
 
   return (
     <Fragment>
-      <SearchForm onSearch={onSearch} searchData={moviesSearch} onToggleSearch={toggleShortMovie} onSearchChange={updateMovieQuery}/>
+      <SearchForm loading={isLoading} onSearch={onSearch} searchData={moviesSearch} onToggleSearch={toggleShortMovie} onSearchChange={updateMovieQuery}/>
       {moviesSearch.movies.length > 0 && <MovieCardList main={true} movies={moviesSearch.movies} />}
       {isLoading && <Preloader />}
       {isActiveNoContent && <SearchError errorText="Ничего не найдено" />}

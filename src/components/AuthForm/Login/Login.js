@@ -7,6 +7,7 @@ import useInput from '../../../hook/useInput'
 import { useState } from 'react'
 function Login () {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [isBadLogin, setIsBadLogin] = useState(false)
   const [badLoginReason, setBadLoginReason] = useState('')
   const email = useInput('', { emailCheck: true })
@@ -24,11 +25,13 @@ function Login () {
   }
 
   const handleSubmit = (e) => {
+    setIsLoading(true)
     e.preventDefault()
     signin({ email: email.value, password: password.value }, () => {
       setBadLoginReason('')
       setIsBadLogin(false)
       navigate('/movies', { replace: true })
+      setIsLoading(false)
     }, (errValue) => {
       if (errValue.status === 401) {
         setBadLoginReason('Неверное имя пользователя или пароль')
@@ -37,6 +40,7 @@ function Login () {
         setBadLoginReason('Что-то пошло не так, попробуйте еще раз...')
         setIsBadLogin(true)
       }
+      setIsLoading(false)
     })
   }
 
@@ -47,16 +51,16 @@ function Login () {
           {(email.isDirty && email.emailError) && <span className="auth__input-error auth__input-error_active">Неверно введена почта</span>}
           <label className="auth__label" htmlFor="email">E-mail</label>
           <input id="email" name="email" type="email" className="auth__input auth__input_type_email" value={email.value} onChange={handleEmailChange}
-                 placeholder="" />
+                 placeholder="" disabled={isLoading}/>
         </div>
         <div className="auth__input-container">
           {(password.isDirty && password.passwordError) && <span className="auth__input-error auth__input-error_active">Должен быть мин. 8 символов, содержать заглавные буквы и цифры</span>}
           <label className="auth__label" htmlFor="password">Пароль</label>
           <input id="password" name="password" type="password" className="auth__input auth__input_error" value={password.value} onChange={handlePasswordChange}
-                 placeholder="" />
+                 placeholder="" disabled={isLoading}/>
         </div>
         {isBadLogin && <span className="auth__submit-error">{badLoginReason}</span>}
-        <button disabled={email.emailError || password.passwordError} type="submit" className="auth__button auth__button_login link">Войти</button>
+        <button disabled={email.emailError || password.passwordError || isLoading} type="submit" className="auth__button auth__button_login link">Войти</button>
         <div className="auth__alternate">
           <span>Ещё не зарегистрированы? </span>
           <Link to="/signup" className="auth__link link link_text">Регистрация</Link>
