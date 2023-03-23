@@ -79,6 +79,7 @@ function SavedMovies () {
 
   const onDeleteCard = (id) => {
     updateMovies(moviesSearch.movies.filter((movie) => movie._id !== id))
+    setAllMovies(allMovies.filter((movie) => movie._id !== id))
   }
 
   useEffect(() => {
