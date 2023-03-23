@@ -33,6 +33,7 @@
     line-height: 32px;
     border: none;
     text-align: center;
+    position: relative;
 }
 
 .landing-header__nav-element_type_register {
