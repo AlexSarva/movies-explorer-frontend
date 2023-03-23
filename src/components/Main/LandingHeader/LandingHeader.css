@@ -3,42 +3,65 @@
     height: 74px;
     padding: 0 70px 0 70px;
     background: #073042;
-    display: grid;
-    grid-template-columns: 38px 1fr 90px 76px;
-    grid-template-areas: "headerLogo . register login";
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 30px;
     transition: all 0.3s ease-in-out;
 }
 
-.landing-header__register {
-    grid-area: register;
+.landing-header__nav {
+    max-width: 380px;
+}
+
+.landing-header__nav-list {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    background: transparent;
-    border: none;
-    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 30px;
+    list-style: none;
+}
+
+.landing-header__nav-element {
+    margin: 0;
+    padding: 0;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 32px;
-    text-decoration: none;
+    border: none;
     text-align: center;
 }
 
-.landing-header__login {
-    grid-area: login;
-    width: 100%;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 32px;
+.landing-header__nav-element_type_register {
+    width: 90px;
+    background: transparent;
+}
+
+.landing-header__nav-element_type_login {
+    width: 76px;
     height: 32px;
-    color: #000;
     background: #3DDC84;
-    border: none;
     border-radius: 3px;
-    text-decoration: none;
-    text-align: center;
+}
+
+.landing-header__menu-btn {
+    justify-self: end;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url(../../../images/menu.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+    display: none;
+}
+
+.landing-header__menu-btn:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 1000px) {
@@ -46,19 +69,30 @@
         width: calc(100% - 60px);
         padding: 0 30px 0 30px;
     }
+
+    .landing-header__menu-btn {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 575px) {
     .landing-header {
         width: calc(100% - 28px);
         padding: 0 14px 0 14px;
-        grid-template-columns: 38px auto 65px 55px;
-        gap: 14px;
     }
 
-    .landing-header__register {
+    .landing-header__nav-list {
+        column-gap: 14px;
+    }
+
+    .landing-header__nav-element_type_register {
+        width: 65px;
         font-size: 10px;
         line-height: 32px;
         align-self: center;
+    }
+
+    .landing-header__nav-element_type_login {
+        width: 55px;
     }
 }

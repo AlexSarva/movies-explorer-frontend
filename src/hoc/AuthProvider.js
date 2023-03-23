@@ -6,6 +6,7 @@ export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(window.localStorage.getItem('jwt'))
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('user')))
   const navigate = useNavigate()
 
@@ -98,13 +99,16 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       getUserInfo()
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false)
     }
   }, [token])
 
   const value = useMemo(() => ({
-    user, token, signup, signin, signout, patchUser
+    user, token, signup, signin, signout, patchUser, isAuthenticated
   }),
-  [user, token, signup, signin, signout, patchUser]
+  [user, token, signup, signin, signout, patchUser, isAuthenticated]
   )
 
   return <AuthContext.Provider value={value}>
